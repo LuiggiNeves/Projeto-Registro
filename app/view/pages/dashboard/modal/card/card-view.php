@@ -42,9 +42,12 @@
                         <p>Finalizado: 04/05/2066 </p>
                     </div>
 
-                    <div class="infos-operador">
+                    <div class="infos-operador-software">
                         <p>Operador: Luiggi Neves</p>
+
+                        <p>Software: Gplus Loja</p>
                     </div>
+
 
                     <div class="info-detalhes">
                         <div>

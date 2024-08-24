@@ -43,13 +43,13 @@
                                             <p>Entre com o seu acesso</p>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="email" id="form2Example11" class="form-control"
+                                                <input type="email" id="nameEnter" class="form-control"
                                                     placeholder="Digite o seu nome..." />
                                                 <label class="form-label" for="form2Example11">Nome</label>
                                             </div>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="password" id="form2Example22" class="form-control" />
+                                                <input type="password" id="passEnter" class="form-control" />
                                                 <label class="form-label" for="form2Example22">Senha</label>
                                             </div>
 
@@ -91,4 +91,6 @@
 
     <!-- Incluindo o JS do MDBootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+
+    <script src="app/public/js/login/login.js"></script>
 </body>

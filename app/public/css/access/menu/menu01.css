@@ -1,0 +1,26 @@
+.Menu_Container_Tickets{
+    background-color: rgb(199, 79, 79);
+
+    width: 400px;
+    height: 800px;
+}
+
+.Container_Menu_Tickets_Admin_Header{
+    width: 100%;
+    height: 90px;
+
+    margin-bottom: 10px;
+    
+}
+
+.Menu-Body-Pattern{
+    height: 700px!important;
+    overflow-y: auto;
+}
+
+.Container-Menu-Tickets-Admin{
+    width: 100%;
+    height: 100%;
+
+    background-color: royalblue;
+}

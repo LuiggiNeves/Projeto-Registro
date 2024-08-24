@@ -8,7 +8,9 @@
     </header>
 
     <main>
-
+        <div class="Container_Main_Content">
+            <?php include 'app/view/pages/access/main/menu/menu-content.php' ?>
+        </div>
     </main>
 
     <?php include 'app/view/structure/access/footer.php' ?>

@@ -1,0 +1,13 @@
+#Container_NavBar_Admin{
+    width: 100%;
+    height: 100%;
+
+    
+    background-color: red;
+
+}
+
+#Content_NavBar_Admin{
+    width: 100%;;
+    display: flex;
+}
