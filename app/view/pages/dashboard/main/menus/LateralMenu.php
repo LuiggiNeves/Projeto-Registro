@@ -13,6 +13,12 @@
         <a href="#" class="list-group-item list-group-item-action">
             <i class="bi bi-person-add"></i> <span class="menu-text">Cadastro</span>
         </a>
+
+        <a href="http://localhost/Projeto-Registro/login" class="list-group-item list-group-item-action">
+            <i class="bi bi-box-arrow-right"></i> <span class="menu-text">Logar</span>
+        </a>
+
+
         <a href="#" class="list-group-item list-group-item-action">
             <i class="bi bi-gear"></i> <span class="menu-text">Configurações</span>
         </a>

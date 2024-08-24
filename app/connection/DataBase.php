@@ -9,7 +9,7 @@ class DataBase
     {
 
         if (!isset(self::$instance)) {
-            self::$instance = new PDO('mysql:host=localhost;dbname=dados', 'root', '');
+            self::$instance = new PDO('mysql:host=localhost;dbname=registrodb', 'root', '');
 
             return self::$instance;
         }return self::$instance;
