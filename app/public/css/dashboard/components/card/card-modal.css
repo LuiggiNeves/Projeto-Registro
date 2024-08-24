@@ -1,0 +1,96 @@
+.Container-Modal-view{
+    width: 100%;
+    height: 100%
+
+}
+
+
+/* Estilo para o modal */
+.card-modal {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fica em posição fixa na tela */
+    z-index: 1; /* Sobre outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    overflow: auto;
+
+}
+
+/* Estilo do conteúdo do modal */
+.card-modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: 10px;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Largura do modal */
+
+}
+
+/* Estilo do botão de fechar */
+.card-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card-close:hover,
+.card-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*Layout Infos Básicas*/
+
+
+.infos-inicial{
+    width: 100%;
+    display: flex;
+    background-color: red;
+    justify-content: space-between;
+
+}
+
+.infos-cliente{
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    justify-content: space-around;
+}
+
+.infos-assunto{
+    width: 100%;
+    background-color: rgb(21, 21, 128);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.info-data{
+    width: 100%;
+    background-color: rgb(0, 255, 115);
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-detalhes{
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: aquamarine;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.container-infos-arquivos{
+    display: flex;
+    justify-content: space-evenly;
+}

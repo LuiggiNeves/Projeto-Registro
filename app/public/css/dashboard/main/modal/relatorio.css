@@ -1,0 +1,43 @@
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  
+}
+
+#relatoriosModal{
+    overflow: hidden;
+}
+
+
+.Container_Modal_Relatorios {
+    min-width: 1200px;
+    min-height: 500px !important;
+    background-color: rgb(255, 255, 255)!important;
+    display: flex;
+    overflow: hidden;
+}
+
+
+
+
+.Content-Modal-Relatorios-Header{
+    width: 100%;
+    background-color: red;
+    height: 30px;
+    display: flex;
+}
+
+.Title-Modal{
+    width: 50%;
+}
+
+.Close-Modal-BTN{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}

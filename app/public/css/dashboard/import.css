@@ -1,0 +1,7 @@
+@import 'app.css';
+@import 'header/navbar/navbar.css';
+@import 'main/menus/LateralMenu.css';
+@import 'main/modal/relatorio.css';
+@import 'main/main.css';
+@import 'components/card/card-item.css';
+@import 'components/card/card-modal.css';
