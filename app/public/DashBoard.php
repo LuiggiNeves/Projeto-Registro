@@ -1,4 +1,5 @@
 <?php include 'app/view/structure/dashboard/head.php' ?>
+<title>Dashboard</title>
 </head>
 
 <body>

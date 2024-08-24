@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link rel="stylesheet" href="app/public/css/dashboard/import.css">
+    <link rel="stylesheet" href="app/public/css/access/import.css">
 
     <link rel="shortcut icon" href="app/public/assets/img/Logo.png" type="image/x-icon">
 
