@@ -1,31 +1,39 @@
 <?php
-require 'vendor/autoload.php';
+
+namespace App\Config;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Exception;
 
-// Chave secreta para codificação e decodificação do JWT
-$secretKey = $_ENV['Chave_Secreta'];
+class AuthToken
+{
+    private static $secretKey = '123456789'; // Substitua por sua chave secreta real
+    private static $algorithm = 'HS256'; // Algoritmo de assinatura
 
-// Exemplo de dados do usuário após autenticação bem-sucedida
-$userId = 1; // ID do usuário
-$username = 'usuario_exemplo';
+    public static function generateToken($data)
+    {
+        $issuedAt = time();
+        $expirationTime = $issuedAt + 3600; // Token válido por 1 hora
+        $payload = array(
+            'iat' => $issuedAt,
+            'exp' => $expirationTime,
+            'data' => $data
+        );
 
-// Definir o tempo de expiração do token
-$issuedAt = time();
-$expirationTime = $issuedAt + 3600;  // o token será válido por 1 hora
+        return JWT::encode($payload, self::$secretKey, self::$algorithm);
+    }
 
-// Criar o payload do token
-$payload = [
-    'iat' => $issuedAt,
-    'exp' => $expirationTime,
-    'userId' => $userId,
-    'username' => $username
-];
+    public static function validateToken($token)
+    {
+        try {
+            $decoded = JWT::decode($token, new Key(self::$secretKey, self::$algorithm));
+            return (array) $decoded->data; // Retorna os dados decodificados do token
+        } catch (Exception $e) {
+            error_log('Erro ao validar token: ' . $e->getMessage());
+            return false; // Token inválido ou expirado
+        }
+    }    
+}
 
-// Gerar o token JWT
-$jwt = JWT::encode($payload, $secretKey, 'HS256');
-
-// Retornar o token para o usuário (pode ser em uma resposta JSON, por exemplo)
-echo json_encode(['token' => $jwt]);
 ?>

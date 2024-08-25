@@ -1,4 +1,8 @@
-<?php include 'app/view/structure/access/head.php'; ?>
+<?php 
+require_once 'vendor/autoload.php';
+include 'app/view/structure/access/head.php'; ?>
+
+
 <title>Sistema | Admin</title>
 </head>
 

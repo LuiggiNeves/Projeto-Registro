@@ -1,26 +1,38 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginButton = document.querySelector('button[type="button"]');
-    loginButton.addEventListener('click', function() {
-        const nome = document.getElementById('nameEnter').value;
-        const senha = document.getElementById('passEnter').value;
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio normal do formulário
 
-        fetch('app/controller/httpAcess/validationENV.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nome, senha })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Redirecionar ou mostrar mensagem de sucesso
-                window.location.href = 'pagina_de_sucesso.php';
-            } else {
-                // Mostrar mensagem de erro
-                alert('Erro no login. Verifique suas credenciais.');
+    const name = document.getElementById('nameEnter').value;
+    const password = document.getElementById('passEnter').value;
+    const rememberMe = document.getElementById('rememberMe').checked;
+
+    const data = {
+        name: name,
+        password: password,
+        rememberMe: rememberMe
+    };
+
+    fetch('app/controller/httpAccess/validationENV.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Armazena o token JWT no localStorage
+            if (data.token) {
+                localStorage.setItem('authToken', data.token);
             }
-        })
-        .catch(error => console.error('Erro:', error));
+
+            // Redireciona para a página do dashboard ou outra página após login bem-sucedido
+            window.location.href = 'http://localhost/Projeto-Registro/admin';
+        } else {
+            alert('Login falhou: ' + data.message);
+        }
+    })
+    .catch((error) => {
+        console.error('Erro:', error);
     });
 });

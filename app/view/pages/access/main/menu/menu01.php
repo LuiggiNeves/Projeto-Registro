@@ -21,44 +21,7 @@
         </div>
         <div class="Container-Menu-Tickets-Admin">
             <div class="Menu-Body-Pattern">
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-
-
+                <?php include 'app/view/pages/access/components/card-item.php'; ?>
             </div>
         </div>
     </div>

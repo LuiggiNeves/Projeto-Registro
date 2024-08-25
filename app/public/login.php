@@ -1,25 +1,8 @@
 <?php include 'app/view/structure/dashboard/head.php' ?>
 <title>Login</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
-<style>
-    .gradient-custom-2 {
-        background: linear-gradient(to right, #ff8c00, #ff6a00);
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
-    }
+<link rel="stylesheet" href="app/public/css/access/login.css">
 
-    .gradient-form {
-        height: 100vh;
-    }
-
-    .card {
-        border-radius: 1rem;
-    }
-
-    .Container-max-h {
-        height: 100vh;
-    }
-</style>
 </head>
 
 <body>
@@ -39,36 +22,29 @@
                                             <h4 class="mt-1 mb-5 pb-1"></h4>
                                         </div>
 
-                                        <form>
+                                        <form id="loginForm" method="POST" action="">
                                             <p>Entre com o seu acesso</p>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="email" id="nameEnter" class="form-control"
-                                                    placeholder="Digite o seu nome..." />
-                                                <label class="form-label" for="form2Example11">Nome</label>
+                                                <input type="text" id="nameEnter" class="form-control" placeholder="Digite o seu nome..." required />
+                                                <label class="form-label" for="nameEnter">Nome</label>
                                             </div>
 
                                             <div data-mdb-input-init class="form-outline mb-4">
-                                                <input type="password" id="passEnter" class="form-control" />
-                                                <label class="form-label" for="form2Example22">Senha</label>
+                                                <input type="password" id="passEnter" class="form-control" required />
+                                                <label class="form-label" for="passEnter">Senha</label>
                                             </div>
 
                                             <div>
-                                                <input type="checkbox" name="" id="">
+                                                <input type="checkbox" id="rememberMe">
                                                 <i>Lembrar</i>
-
                                             </div>
 
                                             <div class="text-center pt-1 mb-5 pb-1">
-
-                                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block fa-lg  mb-3" type="button">Log
-                                                    in</button>
-
+                                                <button class="btn btn-login btn-block fa-lg mb-3" type="submit">Log in</button>
                                             </div>
-
-
-
                                         </form>
+
 
                                     </div>
                                 </div>
