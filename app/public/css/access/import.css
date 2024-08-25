@@ -5,3 +5,5 @@
 @import 'menu/menu02.css';
 @import '../dashboard/components/card/card-item.css';
 @import '../dashboard/components/card/card-modal.css';
+@import 'components/imgico.css';
+@import 'modal/modal-info.css';

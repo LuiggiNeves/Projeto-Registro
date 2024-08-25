@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'vendor/autoload.php';
 include 'app/view/structure/access/head.php'; ?>
 
@@ -17,6 +17,10 @@ include 'app/view/structure/access/head.php'; ?>
         </div>
     </main>
 
-    <?php include 'app/view/structure/access/footer.php' ?>
+
+
+
+    <?php include 'app/view/pages/access/main/modal/view-infos.php' ?>
     <?php include 'app/view/structure/access/footer-script.php' ?>
+    <?php include 'app/view/structure/access/footer.php' ?>
 </body>

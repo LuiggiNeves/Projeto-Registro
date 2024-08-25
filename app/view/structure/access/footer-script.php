@@ -8,5 +8,6 @@
 <!--SCRIPTS-->
 <script src="app/public/js/dashboard/components/card/card-open.js"></script>
 <script src="app/public/js/dashboard/components/card/card.js"></script>
+<script src="app/public/js/Access/card/view-card.js"></script>
 
 <script src="app/public/js/Access/card/card-user.js"></script>

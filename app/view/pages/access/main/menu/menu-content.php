@@ -6,4 +6,8 @@
     <div class="">
         <?php include 'app/view/pages/access/main/menu/menu02.php' ?>
     </div>
+
+    <div>
+        <?php include 'app/view/pages/access/main/menu/menu03.php' ?>
+    </div>
 </div>

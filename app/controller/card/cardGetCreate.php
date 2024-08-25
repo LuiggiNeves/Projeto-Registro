@@ -13,18 +13,16 @@ use function App\controller\card\verificarOuCriarCliente;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['action']) && $_POST['action'] === 'create') {
-        // Log de depuração para verificar os dados recebidos
         error_log(print_r($_POST, true));
 
         // Verifica se o ID do cliente foi fornecido ou precisa ser criado
         $id_cliente = $_POST['id_cliente'] ?? '';
 
         if (empty($id_cliente)) {
-            // Se o ID do cliente não foi fornecido, tenta criar um novo cliente
             $nome_cliente = $_POST['cliente_nome'] ?? '';
             if (!empty($nome_cliente)) {
                 try {
-                    $id_cliente = verificarOuCriarCliente($nome_cliente); // Chama a função do novo arquivo
+                    $id_cliente = verificarOuCriarCliente($nome_cliente);
                 } catch (\Exception $e) {
                     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
                     exit;
@@ -35,10 +33,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Captura os dados do formulário para criar o cartão
+        // Diretório para upload de imagens
+        $uploadDirectory = __DIR__ . '/../../../app/uploads/';
+
+        // Verifica se o diretório de upload existe, se não existir, cria-o
+        if (!is_dir($uploadDirectory)) {
+            mkdir($uploadDirectory, 0777, true);
+        }
+
+        // Variável para armazenar o caminho da imagem
+        $dir_img = '';
+
+        // Processo de upload de imagens
+        if (!empty($_FILES['imagens']['name'][0])) {
+            foreach ($_FILES['imagens']['tmp_name'] as $key => $tmp_name) {
+                $fileName = basename($_FILES['imagens']['name'][$key]);
+                $targetFilePath = $uploadDirectory . $fileName;
+
+                // Validação do tipo de arquivo
+                $fileType = mime_content_type($tmp_name);
+                if (strpos($fileType, 'image/') === false) {
+                    echo json_encode(['success' => false, 'message' => 'Um ou mais arquivos não são imagens válidas.']);
+                    exit;
+                }
+
+                if (move_uploaded_file($tmp_name, $targetFilePath)) {
+                    $dir_img .= 'uploads/' . $fileName . ';'; // Adiciona o caminho da imagem a variável, separando por ponto e vírgula se houver múltiplas imagens
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erro ao salvar a imagem: ' . $fileName]);
+                    exit;
+                }
+            }
+            $dir_img = rtrim($dir_img, ';'); // Remove o ponto e vírgula extra do final da string
+        }
+
+        // Captura os dados do formulário para criar o cartão, incluindo o caminho da imagem
         $data = [
             'id_cliente' => $id_cliente,
-            'id_operador' => 1, // Suponha que seja o operador logado (ajuste conforme necessário)
+            'id_operador' => 1,
             'data_inicio' => $_POST['data_inicio'] ?? null,
             'data_prazo' => $_POST['data_prazo'] ?? null,
             'data_fim' => $_POST['data_fim'] ?? null,
@@ -48,10 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'assunto' => $_POST['assunto'] ?? '',
             'descricao' => $_POST['descricao'] ?? '',
             'obs' => '',
-            'situacao_card' => 1, // Supondo que '1' significa "Aberto"
+            'situacao_card' => 1,
             'sequencia' => $_POST['sequencia'] ?? '',
             'software' => $_POST['software'] ?? '',
-            'id_motivo' => $_POST['id_motivo'] ?? ''
+            'id_motivo' => $_POST['id_motivo'] ?? '',
+            'dir_img' => $dir_img  // Inclui o caminho das imagens no array de dados
         ];
 
         try {

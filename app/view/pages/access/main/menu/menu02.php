@@ -70,8 +70,16 @@
                 </div>
 
                 <div>
+                    <p>Imagens</p>
+                    <div class="loader"></div>
+                    <input type="file" name="imagens[]" id="imageInput" multiple accept="image/*"> <!-- Apenas imagens são permitidas -->
+                </div>
+
+                <div>
                     <button type="button" id="submitButton">Criar Cartão</button>
                 </div>
+
+
             </form>
         </div>
     </div>

@@ -1,0 +1,24 @@
+/* Estilo para o modal */
+.Card_Details_Modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fixa o modal na tela */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura */
+    height: 100%; /* Ocupa toda a altura */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo semitransparente */
+    z-index: 1000; /* Certifica-se de que o modal esteja acima de outros elementos */
+    display: flex; /* Alinha o conteúdo ao centro */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo para o conteúdo do modal */
+.Card_Details_Content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%; /* Largura do conteúdo */
+    max-width: 600px; /* Máximo de largura */
+    text-align: left;
+}

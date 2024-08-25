@@ -14,11 +14,10 @@ class CardModel {
     public function __construct() {
         $this->db = DataBase::getConn(); // Conecta ao banco de dados
     }
-
     public function createCard($data) {
         try {
-            $sql = "INSERT INTO card (id_cliente, id_operador, data_inicio, data_prazo, data_fim, comunicador_01, comunicador_02, situacao, assunto, descricao, obs, situacao_card, sequencia, software, id_motivo) 
-                    VALUES (:id_cliente, :id_operador, :data_inicio, :data_prazo, :data_fim, :comunicador_01, :comunicador_02, :situacao, :assunto, :descricao, :obs, :situacao_card, :sequencia, :software, :id_motivo)";
+            $sql = "INSERT INTO card (id_cliente, id_operador, data_inicio, data_prazo, data_fim, comunicador_01, comunicador_02, situacao, assunto, descricao, obs, situacao_card, sequencia, software, id_motivo, dir_img) 
+                    VALUES (:id_cliente, :id_operador, :data_inicio, :data_prazo, :data_fim, :comunicador_01, :comunicador_02, :situacao, :assunto, :descricao, :obs, :situacao_card, :sequencia, :software, :id_motivo, :dir_img)";
             $stmt = $this->db->prepare($sql);
             
             // Bind dos parâmetros
@@ -37,7 +36,8 @@ class CardModel {
             $stmt->bindParam(':sequencia', $data['sequencia']);
             $stmt->bindParam(':software', $data['software']);
             $stmt->bindParam(':id_motivo', $data['id_motivo']);
-
+            $stmt->bindParam(':dir_img', $data['dir_img']); // Adicionado bind para o caminho das imagens
+    
             $stmt->execute();
             return $this->db->lastInsertId();
         } catch (Exception $e) {

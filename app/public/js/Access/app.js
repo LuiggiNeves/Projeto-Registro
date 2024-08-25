@@ -1,9 +1,34 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Verifica se o token JWT existe e é válido
     checkTokenValidity();
-    
+
     // Carrega as opções dos selects e configura sugestões de clientes
     loadOptions();
+
+    document.getElementById('submitButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Impede o comportamento padrão do formulário
+
+        const form = document.getElementById('cardForm');
+        const formData = new FormData(form); // Utiliza FormData para incluir imagens
+
+        fetch('app/controller/card/cardGetCreate.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    alert(result.message);
+                    form.reset(); // Opcional: Reseta o formulário após o sucesso
+                } else {
+                    alert('Erro: ' + result.message);
+                }
+            })
+            .catch(error => console.error('Erro ao criar cartão:', error));
+    });
+
+    // Funções de validação e carregamento de opções...
+
 
     function checkTokenValidity() {
         const token = localStorage.getItem('authToken');
@@ -20,19 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success) {
-                alert('Sessão expirada. Por favor, faça login novamente.');
-                localStorage.removeItem('authToken');
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    alert('Sessão expirada. Por favor, faça login novamente.');
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'http://localhost/Projeto-Registro/login';
+                }
+            })
+            .catch((error) => {
+                console.error('Erro na validação do token:', error);
+                alert('Erro ao validar o token. Por favor, tente novamente.');
                 window.location.href = 'http://localhost/Projeto-Registro/login';
-            }
-        })
-        .catch((error) => {
-            console.error('Erro na validação do token:', error);
-            alert('Erro ao validar o token. Por favor, tente novamente.');
-            window.location.href = 'http://localhost/Projeto-Registro/login';
-        });
+            });
     }
 
     function loadOptions() {
@@ -43,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 populateSelect('software', data.software, 'id', 'nome');
                 populateSelect('situacao', data.situacao, 'id', 'nome_situacao');
                 populateSelect('id_motivo', data.id_motivo, 'id', 'nome_motivo');
-                
+
                 // Configura as sugestões de clientes
                 setupClientSuggestions(data.clientes);
             })
@@ -66,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const clienteIdInput = document.getElementById('clienteIdInput');
         const suggestionsContainer = document.getElementById('suggestions');
 
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             const query = this.value.toLowerCase();
             suggestionsContainer.innerHTML = '';
             clienteIdInput.value = ''; // Limpa o campo de ID oculto sempre que o usuário digita
@@ -77,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const suggestion = document.createElement('div');
                     suggestion.textContent = cliente.nome;
                     suggestion.classList.add('suggestion-item');
-                    suggestion.addEventListener('click', function() {
+                    suggestion.addEventListener('click', function () {
                         input.value = cliente.nome;
                         clienteIdInput.value = cliente.id; // Preenche o campo de ID oculto com o ID do cliente
                         suggestionsContainer.style.display = 'none';
@@ -91,43 +116,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Esconde as sugestões ao clicar fora
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!input.contains(e.target) && !suggestionsContainer.contains(e.target)) {
                 suggestionsContainer.style.display = 'none';
             }
         });
     }
 
-    document.getElementById('submitButton').addEventListener('click', function(event) {
+    document.getElementById('submitButton').addEventListener('click', function (event) {
         event.preventDefault(); // Impede o comportamento padrão do formulário
-    
+
         const form = document.getElementById('cardForm');
-        
+
         // Certifique-se de que o campo oculto 'action' tenha um valor antes de enviar
         const actionInput = document.createElement('input');
         actionInput.type = 'hidden';
         actionInput.name = 'action';
         actionInput.value = 'create';
         form.appendChild(actionInput);
-        
+
         const formData = new FormData(form);
-    
+
         // Log de depuração para verificar os dados do formulário
         for (let [key, value] of formData.entries()) {
             console.log(key, value);
         }
-    
+
         fetch('app/controller/card/cardGetCreate.php', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
-        .then(result => {
-            console.log('Resposta do servidor:', result); // Adiciona um log da resposta do servidor
-            alert(result);
-        })
-        .catch(error => console.error('Erro ao criar cartão:', error));
+            .then(response => response.text())
+            .then(result => {
+                console.log('Resposta do servidor:', result); // Adiciona um log da resposta do servidor
+                alert(result);
+            })
+            .catch(error => console.error('Erro ao criar cartão:', error));
     });
-    
-    
+
+
 });
