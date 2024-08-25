@@ -20,8 +20,24 @@ function buscarDadosAjax() {
                         var cardElement = document.createElement('div');
                         cardElement.classList.add('Container_Card_Item');
 
+                        // Adiciona classe de situação
+                        var situationClass = '';
+                        switch (card.situacao) {
+                            case 1:
+                                situationClass = 'situacao-verde';
+                                break;
+                            case 2:
+                                situationClass = 'situacao-amarelo';
+                                break;
+                            case 3:
+                                situationClass = 'situacao-vermelho';
+                                break;
+                            default:
+                                situationClass = 'situacao-default'; // Classe padrão se necessário
+                        }
+
                         cardElement.innerHTML = `
-                            <div class="Card-Item-Menu-Header">
+                            <div class="Card-Item-Menu-Header ${situationClass}">
                                 <div class="Card-item-assunto">
                                     <i>${card.assunto}</i>
                                 </div>
