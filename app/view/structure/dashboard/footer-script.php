@@ -3,6 +3,10 @@
 <script src="app/public/js/dashboard/components/card/card.js"></script>
 <script src="app/public/js/dashboard/app.js"></script>
 <script src="app/public/js/dashboard/components/card/card-load.js"></script>
+<script src="app/public/js/dashboard/connection/test-connection.js"></script>
+
+<!--SweetAlert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!--Bootstrap-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
