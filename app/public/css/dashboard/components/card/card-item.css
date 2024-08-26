@@ -24,7 +24,7 @@
 .Card-Item-Menu-Body {
     width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 107);
+    background-color: rgb(255, 255, 255);
 
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -33,7 +33,7 @@
     position: relative; 
     display: flex;
     justify-content: space-between;
-    color: #ffff;
+    color: #000000;
 }
 
 .Card-item-operador {
@@ -58,6 +58,7 @@
     height: 15px;
     border-radius: 5px;
     border: none;
+    border: 1px solid black;
 }
 
 
@@ -66,8 +67,8 @@
 /* Estilos para situações */
 
 .situacao-verde {
-    background-color: #d4edda; 
-    border-left: 5px solid #28a745; 
+    background-color: #a1d3add0; 
+    border-left: 5px solid #179134; 
 }
 
 .situacao-amarelo {
@@ -76,7 +77,7 @@
 }
 
 .situacao-vermelho {
-    background-color: #f8d7da;
+    background-color: #f0a0a6;
     border-left: 5px solid #dc3545; 
 }
 

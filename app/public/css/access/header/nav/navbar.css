@@ -1,13 +1,50 @@
-#Container_NavBar_Admin{
+#Container_NavBar_Admin {
     width: 100%;
-    height: 100%;
-
-    
-    background-color: red;
-
+    height: 50px;
+    background-color: #181818;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
 }
 
-#Content_NavBar_Admin{
-    width: 100%;;
+#Content_NavBar_Admin {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pattern-div-nav{
+
+    margin-left: 5px;
+    height: 20px!important;
+    width: 100px;
+}
+
+
+
+.admin-title {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.account-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre o ícone/nome e o botão de menu */
+}
+
+.dashboard-item{
+    text-align: center;
+}
+
+.sair-item{
+    text-align: center;
+
+
+    border-radius: 3px;
+}
+
+.sair-item:hover{
+    background-color: red!important;
+    color: #fff!important;
 }

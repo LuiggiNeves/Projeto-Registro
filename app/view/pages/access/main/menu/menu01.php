@@ -2,8 +2,8 @@
     <div>
         <div class="Container_Menu_Tickets_Admin_Header">
 
-            <div>
-                <h3>Menu Controle</h3>
+            <div class="title-conntent-cont">
+                <h3>Menu Card</h3>
             </div>
             <div>
                 <input type="date" name="" id="">

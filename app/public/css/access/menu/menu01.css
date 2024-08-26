@@ -1,7 +1,9 @@
 .Menu_Container_Tickets{
-    background-color: rgb(199, 79, 79);
-
-    width: 400px;
+    background-color: rgb(19, 19, 19);  
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    width: 450px;
     height: 800px;
 }
 
@@ -15,12 +17,20 @@
 
 .Menu-Body-Pattern{
     height: 700px!important;
+    padding: 5px;
     overflow-y: auto;
 }
 
 .Container-Menu-Tickets-Admin{
     width: 100%;
     height: 100%;
+    color: black;
+    background-color: #252525;
+}
 
-    background-color: royalblue;
+.title-conntent-cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }

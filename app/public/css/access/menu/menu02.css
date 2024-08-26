@@ -1,6 +1,213 @@
-.Container_Menu_Lançamento{
-    min-width: 900px;
-    height: 800px;
+.Container_Menu_Lançamento {
+    width: 600px;
+    max-width: 900px;
 
-    background-color: orange;
+    margin-left: 100px;
+    border: 1px solid black;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+
+    overflow: auto;
+}
+
+.Menu_L_Header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.suggestions-container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 200px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    width: 250px;
+
+
+
+}
+
+.loader {
+    display: none;
+}
+
+.select-motivo select{
+    width: 150px;
+}
+
+/*FORM*/
+
+.input-name{
+    width: 200px;
+    height: 30px;
+}
+
+
+
+.box-extra{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.box-extra-content input{
+    width:300px;
+    text-align: center;
+
+    border: none;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.box-1{
+
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.box-2{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+.box-2 select{
+    text-align: center;
+}
+
+.box-3{
+
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.box-4{
+
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.box-5{
+
+    width: 100%;
+    display: flex;
+
+    padding: 10px;
+}
+.cont-box6{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.box-6 {
+    width: 90%;
+    padding: 20px;
+    border: 2px dashed #ccc; /* Borda pontilhada para indicar área de drop */
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s; /* Transição suave para estilos */
+
+}
+
+.box-6.drag-over {
+    border-color: #007bff; /* Muda a cor da borda quando o arquivo é arrastado */
+    background-color: #f0f8ff; /* Fundo leve para indicar área ativa */
+}
+
+
+.container-component-input{
+    width: 100px;
+
+}
+
+
+/*Component*/
+
+
+.input-pattern-form{
+    display: flex;
+}
+.input-pattern-form input{
+    border: none;
+    
+    border: 1px solid black;
+    display: flex;
+    height: 25px;
+    padding: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius:5px;
+    border-bottom-right-radius: 5px;
+}
+
+.box-deco{
+    padding: 5px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: none;
+    border-bottom-right-radius: none;
+    background-color: #ccc;
+    border: 1px solid black;
+    color: black;
+}
+
+.cont-text-area{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont-text-area textarea{
+    width: 90%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.box-button-end{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}   
+
+.button-end-s{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.button-end-s button{
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 120px;
+
 }

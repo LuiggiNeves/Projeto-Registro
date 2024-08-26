@@ -7,77 +7,129 @@
         </div>
 
         <div class="Menu_L_Body">
-            <form id="cardForm">
-                <div class="input-wrapper">
-                    <p>Cliente:</p>
-                    <input type="text" name="cliente_nome" id="clienteInput" class="input-field" placeholder="Pesquisar cliente" autocomplete="off">
-                    <input type="hidden" name="id_cliente" id="clienteIdInput"> <!-- Campo oculto para o ID do cliente -->
-                    <div id="suggestions" class="suggestions-container" style="display: none;"></div>
-                </div>
-                <div>
-                    <p>Cnpj:</p>
-                    <input type="text" name="cnpj" placeholder="Digite o CNPJ">
+            <form id="cardForm" class="">
+
+                <div class="box-1">
+                    <div class="input-wrapper input-pattern-form">
+
+                        <div class="box-deco">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        <div class="container-component-input">
+                            <input type="text" name="cliente_nome" id="clienteInput" class="input-field input-name" placeholder="Pesquisar cliente" autocomplete="off">
+                            <input type="hidden" name="id_cliente" id="clienteIdInput"> <!-- Campo oculto para o ID do cliente -->
+                            <div id="suggestions" class="suggestions-container w-100" style="display: none;"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="input-pattern-form">
+
+                        <div class="box-deco">
+                            <i class="bi bi-file-earmark-person"></i>
+                        </div>
+                        <input type="text" name="cnpj" placeholder="Digite o CNPJ">
+                    </div>
+
+
+
+
                 </div>
 
-                <div>
-                    <p>Software</p>
-                    <select name="software"></select>
+
+                <div class="box-2">
+
+                    <div>
+                        <p>Situação</p>
+                        <select name="situacao"></select>
+                    </div>
+
+                    <div class="select-motivo">
+                        <p>Motivo</p>
+                        <select name="id_motivo"></select>
+                    </div>
+
+                    <div>
+                        <p>Software</p>
+                        <select name="software"></select>
+                    </div>
+
+
                 </div>
 
-                <div>
-                    <p>Situação</p>
-                    <select name="situacao"></select>
+                <div class="box-extra">
+                    <div class="box-extra-content">
+                        <p>Assunto</p>
+                        <input type="text" name="assunto" placeholder="Escreva o Assunto (Mínimo de palavras)">
+                    </div>
+
+
                 </div>
 
-                <div>
-                    <p>Motivo</p>
-                    <select name="id_motivo"></select>
+
+                <div class="box-3">
+
+                    <div>
+                        <p>Nome cliente:</p>
+                        <input type="text" name="comunicador_01" placeholder="Digite o nome com quem está a conversar">
+                    </div>
+
+                    <div>
+                        <p>Nome cliente02:</p>
+                        <input type="text" name="comunicador_02" placeholder="Digite o nome com quem está a conversar">
+                    </div>
                 </div>
 
-                <div>
-                    <p>Nome cliente:</p>
-                    <input type="text" name="comunicador_01" placeholder="Digite o nome com quem está a conversar">
+
+                <div class="box-4">
+
+                    <div>
+                        <p>Inicio</p>
+                        <input type="date" name="data_inicio">
+                    </div>
+
+                    <div>
+                        <p>Prazo</p>
+                        <input type="date" name="data_prazo">
+                    </div>
+
+                    <div>
+                        <p>Finalização</p>
+                        <input type="date" name="data_fim">
+                    </div>
                 </div>
 
-                <div>
-                    <p>Nome cliente02:</p>
-                    <input type="text" name="comunicador_02" placeholder="Digite o nome com quem está a conversar">
+
+                <div class="box-5">
+                    <div class="cont-text-area">
+                        <textarea name="descricao" placeholder="Detalhes o problema..."></textarea>
+                    </div>
+
                 </div>
 
-                <div>
-                    <p>Assunto</p>
-                    <input type="text" name="assunto" placeholder="Escreva o Assunto (Mínimo de palavras)">
+                <div class="cont-box6">
+                    <div class="box-6" id="dropZone">
+                        <div class="loader"></div>
+                        <input type="file" name="imagens[]" id="imageInput" multiple style="display: none;"> <!-- Esconde o input de arquivo padrão -->
+                        <p>Arraste os arquivos aqui ou clique para selecionar</p>
+                    </div>
                 </div>
 
-                <div>
-                    <p>Inicio do Problema</p>
-                    <input type="date" name="data_inicio">
+
+
+
+
+                <div class="box-button-end">
+                    <div class="button-end-s">
+                        <button type="button" id="submitButton">Criar Cartão</button>
+                        <button type="button" id="">Limpar Cartão</button>
+                    </div>
                 </div>
 
-                <div>
-                    <p>Prazo de Resolução</p>
-                    <input type="date" name="data_prazo">
-                </div>
 
-                <div>
-                    <p>Finalização do problema</p>
-                    <input type="date" name="data_fim">
-                </div>
 
-                <div>
-                    <p>Escreva os detalhes do problema</p>
-                    <textarea name="descricao" placeholder="Escreva os detalhes do problema"></textarea>
-                </div>
 
-                <div>
-                    <p>Imagens</p>
-                    <div class="loader"></div>
-                    <input type="file" name="imagens[]" id="imageInput" multiple accept="image/*"> <!-- Apenas imagens são permitidas -->
-                </div>
 
-                <div>
-                    <button type="button" id="submitButton">Criar Cartão</button>
-                </div>
 
 
             </form>

@@ -7,7 +7,6 @@ require '../../model/card/card-create.php';
 require 'verificarOuCriarCliente.php'; // Inclui o novo arquivo
 
 use App\model\card\CardModel;
-
 use function App\controller\card\verificarOuCriarCliente;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,43 +30,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode(['success' => false, 'message' => 'Nome do cliente ausente e ID não fornecido.']);
                 exit;
             }
+        } else {
+            $nome_cliente = $_POST['cliente_nome'] ?? ''; // Obtém o nome do cliente para usar na criação do diretório
         }
 
-        // Diretório para upload de imagens
-        $uploadDirectory = __DIR__ . '/../../../app/uploads/';
+        // Cria um nome de diretório único usando o nome do cliente e a data atual
+        $directoryName = $nome_cliente . '-' . date('Y-m-d');
+        $uploadDirectory = __DIR__ . '/../../../app/uploads/' . $directoryName . '/';
 
         // Verifica se o diretório de upload existe, se não existir, cria-o
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0777, true);
         }
 
-        // Variável para armazenar o caminho da imagem
-        $dir_img = '';
+        // Variável para armazenar o caminho do arquivo
+        $dir_files = '';
 
-        // Processo de upload de imagens
+        // Processo de upload de arquivos
         if (!empty($_FILES['imagens']['name'][0])) {
             foreach ($_FILES['imagens']['tmp_name'] as $key => $tmp_name) {
                 $fileName = basename($_FILES['imagens']['name'][$key]);
                 $targetFilePath = $uploadDirectory . $fileName;
 
-                // Validação do tipo de arquivo
-                $fileType = mime_content_type($tmp_name);
-                if (strpos($fileType, 'image/') === false) {
-                    echo json_encode(['success' => false, 'message' => 'Um ou mais arquivos não são imagens válidas.']);
-                    exit;
-                }
-
                 if (move_uploaded_file($tmp_name, $targetFilePath)) {
-                    $dir_img .= 'uploads/' . $fileName . ';'; // Adiciona o caminho da imagem a variável, separando por ponto e vírgula se houver múltiplas imagens
+                    $dir_files .= 'uploads/' . $directoryName . '/' . $fileName . ';'; // Adiciona o caminho do arquivo à variável
                 } else {
-                    echo json_encode(['success' => false, 'message' => 'Erro ao salvar a imagem: ' . $fileName]);
+                    echo json_encode(['success' => false, 'message' => 'Erro ao salvar o arquivo: ' . $fileName]);
                     exit;
                 }
             }
-            $dir_img = rtrim($dir_img, ';'); // Remove o ponto e vírgula extra do final da string
+            $dir_files = rtrim($dir_files, ';'); // Remove o ponto e vírgula extra do final da string
         }
 
-        // Captura os dados do formulário para criar o cartão, incluindo o caminho da imagem
+        // Captura os dados do formulário para criar o cartão, incluindo o caminho dos arquivos
         $data = [
             'id_cliente' => $id_cliente,
             'id_operador' => 1,
@@ -84,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'sequencia' => $_POST['sequencia'] ?? '',
             'software' => $_POST['software'] ?? '',
             'id_motivo' => $_POST['id_motivo'] ?? '',
-            'dir_img' => $dir_img  // Inclui o caminho das imagens no array de dados
+            'dir_img' => $dir_files  // Inclui o caminho dos arquivos no array de dados
         ];
 
         try {
