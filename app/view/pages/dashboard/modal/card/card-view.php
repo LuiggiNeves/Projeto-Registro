@@ -1,6 +1,3 @@
-<!-- Botão para abrir o modal -->
-<button onclick="openModal('viewModal')">Ver Informações</button>
-
 <!-- Modal para Visualização -->
 <div class="card-modal" id="viewModal">
     <div class="card-modal-content">
@@ -55,9 +52,8 @@
                     </div>
 
                     <div class="container-infos-arquivos">
-                        <div class="infos-download-arquivos text-center">
-                            <h6>Arquivos</h6>
-                            <a href="#">Baixar</a>
+                        <div class="modal-info">
+                            <p><strong>Arquivos:</strong> <span id="detailArquivos"></span></p> <!-- Seção para arquivos -->
                         </div>
                     </div>
                 </div>

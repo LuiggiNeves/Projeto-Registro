@@ -2,7 +2,7 @@
 
 namespace App\model\card;
 
-require_once __DIR__ . '/../../../vendor/autoload.php'; // Ajuste o caminho conforme necessário
+require_once __DIR__ . '/../../../vendor/autoload.php';
 use App\connection\DataBase;
 use PDO;
 use Exception;
@@ -85,34 +85,66 @@ class CardModel
     public function updateCardStatus($id_card, $new_status)
     {
         try {
-            // Adiciona log antes da execução da query
             error_log("Tentando atualizar o cartão com ID: $id_card para novo status: $new_status");
 
-            // Prepara a query SQL
             $sql = "UPDATE card SET situacao = :new_status WHERE id = :id_card";
             $stmt = $this->db->prepare($sql);
 
-            // Associa os parâmetros
             $stmt->bindValue(':new_status', $new_status, PDO::PARAM_INT);
             $stmt->bindValue(':id_card', $id_card, PDO::PARAM_INT);
 
-            // Executa a query
             $result = $stmt->execute();
 
-            // Verifica o resultado da execução e adiciona log
             if ($result) {
                 error_log("Atualização realizada com sucesso para o cartão ID: $id_card");
-                echo "Atualização realizada com sucesso para o cartão ID: $id_card"; // Echo para teste
+                echo "Atualização realizada com sucesso para o cartão ID: $id_card"; 
             } else {
                 error_log("Falha na atualização do cartão ID: $id_card");
-                echo "Falha na atualização do cartão ID: $id_card"; // Echo para teste
+                echo "Falha na atualização do cartão ID: $id_card"; 
             }
 
             return $result;
         } catch (Exception $e) {
             error_log("Erro ao atualizar a situação do cartão: " . $e->getMessage());
-            echo "Erro ao atualizar a situação do cartão: " . $e->getMessage(); // Echo para teste
+            echo "Erro ao atualizar a situação do cartão: " . $e->getMessage(); 
             throw new Exception('Erro ao atualizar a situação do cartão: ' . $e->getMessage());
         }
     }
+
+    // Novo método para obter detalhes de um cartão específico
+    public function getCardDetailsById($id_card)
+    {
+        try {
+            $sql = "
+            SELECT 
+                card.*, 
+                clientes.nome AS nome_cliente,
+                software.nome AS nome_software,
+                operador.nome AS nome_operador,
+                motivo.nome_motivo AS nome_motivo,
+                situacao.nome_situacao AS nome_situacao
+            FROM 
+                card
+            JOIN 
+                clientes ON card.id_cliente = clientes.id
+            JOIN 
+                software ON card.software = software.id
+            JOIN 
+                operador ON card.id_operador = operador.id
+            LEFT JOIN 
+                motivo ON card.id_motivo = motivo.id
+            LEFT JOIN 
+                situacao ON card.situacao = situacao.id
+            WHERE 
+                card.id = :id_card
+            ";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':id_card', $id_card, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Retorna os detalhes de um único cartão
+        } catch (Exception $e) {
+            throw new Exception('Erro ao obter detalhes do cartão: ' . $e->getMessage());
+        }
+    }
 }
+?>

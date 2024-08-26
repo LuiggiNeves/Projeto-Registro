@@ -12,7 +12,7 @@ use function App\controller\card\verificarOuCriarCliente;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_POST['action']) && $_POST['action'] === 'create') {
-        error_log(print_r($_POST, true));
+        error_log(print_r($_POST, true)); // Log para depuração
 
         // Verifica se o ID do cliente foi fornecido ou precisa ser criado
         $id_cliente = $_POST['id_cliente'] ?? '';
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     exit;
                 }
             } else {
+                error_log('Erro: Nome do cliente ausente e ID não fornecido.'); // Adicionando log de erro
                 echo json_encode(['success' => false, 'message' => 'Nome do cliente ausente e ID não fornecido.']);
                 exit;
             }
@@ -103,4 +104,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(['success' => false, 'message' => 'Método de requisição inválido.']);
 }
+
 ?>

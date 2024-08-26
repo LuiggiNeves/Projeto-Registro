@@ -13,11 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(form); // Utiliza FormData para incluir imagens
 
         // Certifique-se de que o campo oculto 'action' tenha um valor antes de enviar
-        const actionInput = document.createElement('input');
-        actionInput.type = 'hidden';
-        actionInput.name = 'action';
-        actionInput.value = 'create';
-        form.appendChild(actionInput);
+        if (!form.querySelector('input[name="action"]')) {
+            const actionInput = document.createElement('input');
+            actionInput.type = 'hidden';
+            actionInput.name = 'action';
+            actionInput.value = 'create';
+            form.appendChild(actionInput);
+        }
 
         // Adiciona o ID do operador ao formData
         const operadorId = localStorage.getItem('userId');
@@ -25,6 +27,13 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.append('id_operador', operadorId); // Inclui o ID do operador no formData
         } else {
             alert('Erro: ID do operador não encontrado.');
+            return;
+        }
+
+        // Verifica se o nome do cliente está presente
+        const clienteNome = formData.get('cliente_nome');
+        if (!clienteNome) {
+            alert('Erro: Nome do cliente é necessário.');
             return;
         }
 
@@ -37,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json()) // Supondo que o servidor retorne JSON
+            .then(response => response.json())
             .then(result => {
                 if (result.success) {
                     alert(result.message);
@@ -48,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => console.error('Erro ao criar cartão:', error));
     });
+
 
     // Funções de validação e carregamento de opções...
 
