@@ -11,7 +11,7 @@
 
                     <!-- Menu de dropdown -->
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button class="dropdown-item dashboard-item" type="button">DASHBOARD</button>
+                        <button class="dropdown-item dashboard-item" type="button" onclick="Dashboard()">DASHBOARD</button>
                         <button class="dropdown-item sair-item" type="button" onclick="Deslogar()">SAIR</button>
                     </div>
                 </div>
@@ -31,4 +31,9 @@
         window.alert('DESLOGADO'); // Mostra uma mensagem de alerta
         location.reload(); // Recarrega a página
     }
+
+    function Dashboard(){
+        location.path('yotu');
+    }
+
 </script>

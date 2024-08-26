@@ -26,7 +26,7 @@ class UserModel
 
             // Verifica se um usuário foi encontrado e se as credenciais estão corretas
             if ($user && $user['nome'] == $name && $user['senha'] == $password) {
-                return true;
+                return $user['id']; // Retorna o userId se a senha estiver correta
             } else {
                 return false;
             }

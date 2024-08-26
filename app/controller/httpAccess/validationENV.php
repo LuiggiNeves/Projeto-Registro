@@ -20,16 +20,20 @@ $rememberMe = $input['rememberMe'] ?? false;
 $userModel = new UserModel();
 
 // Valida as credenciais do usuário usando o model
-if ($userModel->validateUser($name, $password)) {
+$userId = $userModel->validateUser($name, $password); // Supondo que a função validateUser retorne o userId
+
+if ($userId) {
     // Se o login for bem-sucedido
     $response = [
         'success' => true,
-        'message' => 'Login bem-sucedido!'
+        'message' => 'Login bem-sucedido!',
+        'userId' => $userId // Adiciona o userId à resposta
     ];
 
-    // Gera um token JWT usando o nome de usuário
+    // Gera um token JWT usando o nome de usuário e ID do usuário
     $tokenData = [
-        'username' => $name
+        'username' => $name,
+        'userId' => $userId // Inclui o userId no token JWT
     ];
     $token = AuthToken::generateToken($tokenData);
     $response['token'] = $token; // Adiciona o token à resposta

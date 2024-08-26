@@ -1,8 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Função para buscar dados dos cartões via AJAX
     function buscarDadosAjax() {
+        // Obtém o id do operador armazenado no localStorage
+        const operadorId = localStorage.getItem('userId');
+
+        if (!operadorId) {
+            console.error('Erro: ID do operador não encontrado no localStorage.');
+            return;
+        }
+
+        // Inclui o operadorId na URL da requisição
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "app/controller/card/cardinfos.php", true);
+        xhr.open("GET", `app/controller/card/cardinfos.php?id_operador=${operadorId}`, true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.onreadystatechange = function () {
@@ -79,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.send();
     }
 
+    // Função para visualizar os detalhes do cartão
     window.viewCard = function (cardId) {
         fetch(`app/model/card/cardGet.php?id=${cardId}`)
             .then(response => response.json())
@@ -128,19 +138,17 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Erro ao buscar detalhes do cartão:', error));
     };
 
-
-
+    // Função para editar cartão
+    window.editCard = function (cardId) {
+        console.log('Editar cartão com ID:', cardId);
+    };
 
     // Função para fechar o modal
     window.closeModal = function () {
         document.getElementById('cardDetailsModal').style.display = 'none';
     };
 
-    // Função para editar cartão
-    window.editCard = function (cardId) {
-        console.log('Editar cartão com ID:', cardId);
-    };
-
     // Chama a função para buscar dados ao carregar a página
     buscarDadosAjax();
 });
+

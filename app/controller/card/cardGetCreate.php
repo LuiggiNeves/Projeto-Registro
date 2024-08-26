@@ -34,6 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome_cliente = $_POST['cliente_nome'] ?? ''; // Obtém o nome do cliente para usar na criação do diretório
         }
 
+        // Obtém o ID do operador do POST
+        $id_operador = $_POST['id_operador'] ?? '';
+
+        if (empty($id_operador)) {
+            echo json_encode(['success' => false, 'message' => 'ID do operador não fornecido.']);
+            exit;
+        }
+
         // Cria um nome de diretório único usando o nome do cliente e a data atual
         $directoryName = $nome_cliente . '-' . date('Y-m-d');
         $uploadDirectory = __DIR__ . '/../../../app/uploads/' . $directoryName . '/';
@@ -65,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Captura os dados do formulário para criar o cartão, incluindo o caminho dos arquivos
         $data = [
             'id_cliente' => $id_cliente,
-            'id_operador' => 1,
+            'id_operador' => $id_operador, // Usa o ID do operador fornecido pelo front-end
             'data_inicio' => $_POST['data_inicio'] ?? null,
             'data_prazo' => $_POST['data_prazo'] ?? null,
             'data_fim' => $_POST['data_fim'] ?? null,

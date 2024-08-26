@@ -19,6 +19,15 @@ document.addEventListener('DOMContentLoaded', function () {
         actionInput.value = 'create';
         form.appendChild(actionInput);
 
+        // Adiciona o ID do operador ao formData
+        const operadorId = localStorage.getItem('userId');
+        if (operadorId) {
+            formData.append('id_operador', operadorId); // Inclui o ID do operador no formData
+        } else {
+            alert('Erro: ID do operador não encontrado.');
+            return;
+        }
+
         // Log de depuração para verificar os dados do formulário
         for (let [key, value] of formData.entries()) {
             console.log(key, value);
@@ -41,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Funções de validação e carregamento de opções...
-
 
     function checkTokenValidity() {
         const token = localStorage.getItem('authToken');
@@ -185,4 +193,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-

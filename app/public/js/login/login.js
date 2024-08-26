@@ -26,6 +26,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
                 localStorage.setItem('authToken', data.token);
             }
 
+            // Armazena o ID do usuário no localStorage
+            if (data.userId) {
+                localStorage.setItem('userId', data.userId);
+            }
+
             // Redireciona para a página do dashboard ou outra página após login bem-sucedido
             window.location.href = 'http://localhost/Projeto-Registro/admin';
         } else {
