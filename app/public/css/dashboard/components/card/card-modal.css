@@ -1,36 +1,25 @@
-.Container-Modal-view{
-    width: 100%;
-    height: 100%
-
-}
-
-
-/* Estilo para o modal */
 .card-modal {
-    display: none; /* Escondido por padrão */
-    position: fixed; /* Fica em posição fixa na tela */
-    z-index: 1; /* Sobre outros elementos */
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    width: 100%;
+    height: 100%;
     overflow: auto;
-
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
 }
 
-/* Estilo do conteúdo do modal */
 .card-modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    margin-top: 10px;
+    background-color: white;
+    margin: 10% auto; /* Centraliza o modal verticalmente */
     padding: 20px;
     border: 1px solid #888;
-    width: 40%; /* Largura do modal */
-
+    width: 60%; /* Largura do modal */
+    border-radius: 8px;
+    position: relative;
 }
 
-/* Estilo do botão de fechar */
 .card-close {
     color: #aaa;
     float: right;
@@ -38,6 +27,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
 .card-close:hover,
 .card-close:focus {
     color: black;
@@ -45,58 +35,21 @@
     cursor: pointer;
 }
 
-
-/*Layout Infos Básicas*/
-
-
-.infos-inicial{
-    width: 100%;
-    display: flex;
-    background-color: red;
-    justify-content: space-between;
-
+.Container-Modal-view {
+    max-height: 500px; /* Altura máxima do conteúdo do modal */
+    overflow-y: auto; /* Rolagem vertical se necessário */
 }
 
-.infos-cliente{
-    width: 100%;
-    background-color: blue;
-    display: flex;
-    justify-content: space-around;
+.modal-info {
+    margin-top: 10px;
 }
 
-.infos-assunto{
-    width: 100%;
-    background-color: rgb(21, 21, 128);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+.Container_Header_Modal,
+.Container_Footer_Modal {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.infos-operador-software{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-}
-
-.info-data{
-    width: 100%;
-    background-color: rgb(0, 255, 115);
-    display: flex;
-    justify-content: space-around;
-}
-
-.info-detalhes{
-    width: 100%;
-    height: 200px;
+.container-infos-arquivos .text-center {
     margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: aquamarine;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.container-infos-arquivos{
-    display: flex;
-    justify-content: space-evenly;
 }

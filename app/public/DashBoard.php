@@ -14,9 +14,24 @@
 
             <main>
                 <div class="Container_Menu_Center">
-                    <div>
-                        reservado
+                    <div class="d-flex align-items-center">
+
+                        <div class="d-flex align-items-center mr-3">
+                            <span class="badge badge-success mr-1" style="width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
+                            <span>Aberto</span>
+                        </div>
+
+                        <div class="d-flex align-items-center mr-3">
+                            <span class="badge badge-warning mr-1" style="width: 10px; height: 10px; border-radius: 50%; display: inline-block;"></span>
+                            <span>Andamento</span>
+                        </div>
+
+                        <div class="d-flex align-items-center">
+                            <span class="badge badge-danger mr-1" style="width: 10; height: 10px; border-radius: 50%; display: inline-block;"></span>
+                            <span>Finalizado</span>
+                        </div>
                     </div>
+
                     <div class="Content-Menu-Center">
                         <div class="Container_Menus_Cube">
                             <!-- Coluna de "Tickets em espera" -->
@@ -30,7 +45,7 @@
                                 <div class="Menu-Body-Pattern">
                                     <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
 
-                                    
+
                                 </div>
                             </div>
 

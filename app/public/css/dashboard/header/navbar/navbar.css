@@ -1,7 +1,7 @@
 nav{
     width: 100%; /*Controle*/
     height: 40px; /*Controle*/
-
+    background-color: #f8f9fa;
 }
 
 #Container_NavBar_Content{
