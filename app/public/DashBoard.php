@@ -29,20 +29,7 @@
                                 </div>
                                 <div class="Menu-Body-Pattern">
                                     <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
-                                    <?php include 'app/view/pages/dashboard/components/card-item.php'; ?>
+
                                     
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 <script src="app/public/js/dashboard/components/card/card-open.js"></script>
 <script src="app/public/js/dashboard/components/card/card.js"></script>
 <script src="app/public/js/dashboard/app.js"></script>
+<script src="app/public/js/dashboard/components/card/card-load.js"></script>
 
 <!--Bootstrap-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
