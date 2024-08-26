@@ -1,22 +1,24 @@
 <div class="Menu_Container_Tickets">
-    <div>
+    <div class="Content_Menu_Tickets">
         <div class="Container_Menu_Tickets_Admin_Header">
 
             <div class="title-conntent-cont">
-                <h3>Menu Card</h3>
+                <h3>Pesquisa</h3>
             </div>
-            <div>
+            <div class="container-input-others">
                 <input type="date" name="" id="">
                 <input type="date" name="" id="">
-            </div>
-
-            <div>
                 <select name="" id="">
                     <option value="">Aberto</option>
-                    <option value="">Finalizado</option>
-                    <option value="">Cancelado</option>
-                    <option value="">Todos</option>
+
                 </select>
+            </div>
+
+            <div class="container-input-search-card">
+                <div class="box-component">
+                    <i class="bi bi-search"></i>
+                </div>
+                <input type="text" name="" id="" placeholder="Pesquise por um cliente...">
             </div>
         </div>
         <div class="Container-Menu-Tickets-Admin">

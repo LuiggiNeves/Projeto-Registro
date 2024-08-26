@@ -5,9 +5,7 @@ include 'app/view/structure/access/head.php'; ?>
 </head>
 
 <body>
-    <header>
-        <?php include 'app/view/pages/access/header/nav/navbar.php' ?>
-    </header>
+
 
     <main>
         <div class="Container_Main_Content">
