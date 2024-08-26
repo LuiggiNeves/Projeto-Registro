@@ -32,7 +32,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             }
 
             // Redireciona para a página do dashboard ou outra página após login bem-sucedido
-            window.location.href = 'http://localhost/Projeto-Registro/admin';
+            window.location.href = HOST_APP+'/admin';
         } else {
             alert('Login falhou: ' + data.message);
         }

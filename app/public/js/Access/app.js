@@ -1,3 +1,8 @@
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Verifica se o token JWT existe e é válido
     checkTokenValidity();
@@ -65,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const token = localStorage.getItem('authToken');
 
         if (!token) {
-            window.location.href = 'http://localhost/Projeto-Registro/login';
+            window.location.href = HOST_APP + '/login';
             return false;
         }
 
@@ -81,13 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!data.success) {
                     alert('Sessão expirada. Por favor, faça login novamente.');
                     localStorage.removeItem('authToken');
-                    window.location.href = 'http://localhost/Projeto-Registro/login';
+                    window.location.href = HOST_APP+'/login';
                 }
             })
             .catch((error) => {
                 console.error('Erro na validação do token:', error);
                 alert('Erro ao validar o token. Por favor, tente novamente.');
-                window.location.href = 'http://localhost/Projeto-Registro/login';
+                window.location.href = HOST_APP+'/login';
             });
     }
 

@@ -67,6 +67,6 @@
 
     <!-- Incluindo o JS do MDBootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
-
+    <script src="app/config/config.js"></script>
     <script src="app/public/js/login/login.js"></script>
 </body>
