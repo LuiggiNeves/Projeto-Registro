@@ -3,6 +3,7 @@
 namespace App\model\card;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
+
 use App\connection\DataBase;
 use PDO;
 use Exception;
@@ -97,16 +98,16 @@ class CardModel
 
             if ($result) {
                 error_log("Atualização realizada com sucesso para o cartão ID: $id_card");
-                echo "Atualização realizada com sucesso para o cartão ID: $id_card"; 
+                echo "Atualização realizada com sucesso para o cartão ID: $id_card";
             } else {
                 error_log("Falha na atualização do cartão ID: $id_card");
-                echo "Falha na atualização do cartão ID: $id_card"; 
+                echo "Falha na atualização do cartão ID: $id_card";
             }
 
             return $result;
         } catch (Exception $e) {
             error_log("Erro ao atualizar a situação do cartão: " . $e->getMessage());
-            echo "Erro ao atualizar a situação do cartão: " . $e->getMessage(); 
+            echo "Erro ao atualizar a situação do cartão: " . $e->getMessage();
             throw new Exception('Erro ao atualizar a situação do cartão: ' . $e->getMessage());
         }
     }
@@ -146,5 +147,57 @@ class CardModel
             throw new Exception('Erro ao obter detalhes do cartão: ' . $e->getMessage());
         }
     }
+
+    public function getFilteredCards($id_operador, $startDate, $endDate, $status, $client)
+    {
+        $sql = "
+    SELECT 
+        card.*, 
+        clientes.nome AS nome_cliente,
+        software.nome AS nome_software,
+        operador.nome AS nome_operador
+    FROM 
+        card
+    JOIN 
+        clientes ON card.id_cliente = clientes.id
+    JOIN 
+        software ON card.software = software.id
+    JOIN
+        operador ON card.id_operador = operador.id
+    WHERE 
+        (:id_operador IS NULL OR card.id_operador = :id_operador)
+    ";
+
+        if (!empty($startDate)) {
+            $sql .= " AND card.data_inicio >= :startDate";
+        }
+        if (!empty($endDate)) {
+            $sql .= " AND card.data_inicio <= :endDate";
+        }
+        if (!empty($status)) {
+            $sql .= " AND card.situacao = :status";
+        }
+        if (!empty($client)) {
+            $sql .= " AND LOWER(clientes.nome) LIKE :client";
+        }
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindValue(':id_operador', $id_operador, PDO::PARAM_INT);
+        if (!empty($startDate)) {
+            $stmt->bindValue(':startDate', $startDate);
+        }
+        if (!empty($endDate)) {
+            $stmt->bindValue(':endDate', $endDate);
+        }
+        if (!empty($status)) {
+            $stmt->bindValue(':status', $status, PDO::PARAM_INT);
+        }
+        if (!empty($client)) {
+            $stmt->bindValue(':client', "%$client%");
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
-?>

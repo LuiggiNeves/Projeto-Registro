@@ -9,16 +9,12 @@
 
 #Content_NavBar_Admin {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-ar;
     align-items: center;
+    flex-direction: row-reverse;
 }
 
-.pattern-div-nav{
 
-    margin-left: 5px;
-    height: 20px!important;
-    width: 100px;
-}
 
 
 
@@ -32,6 +28,9 @@
     align-items: center;
     gap: 10px; /* Espaçamento entre o ícone/nome e o botão de menu */
 }
+
+
+
 
 .dashboard-item{
     text-align: center;
