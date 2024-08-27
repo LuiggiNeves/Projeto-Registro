@@ -1,213 +1,201 @@
-.Container_Menu_Lançamento {
-    width: 600px;
-    max-width: 900px;
-
-    margin-left: 100px;
-    border: 1px solid black;
-    background-color: #fff;
+/* Estilo geral para a página */
+.Container_Menu_Lancamento {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
-    border-radius: 8px;
-
-    overflow: auto;
+    box-sizing: border-box;
 }
 
-.Menu_L_Header{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.suggestions-container {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    width: 200px;
-    max-height: 150px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.input-wrapper {
-    position: relative;
-    display: flex;
-    width: 250px;
-
-
-
-}
-
-.loader {
-    display: none;
-}
-
-.select-motivo select{
-    width: 150px;
-}
-
-/*FORM*/
-
-.input-name{
-    width: 200px;
-    height: 30px;
-}
-
-
-
-.box-extra{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    text-align: center;
-}
-
-.box-extra-content input{
-    width:300px;
-    text-align: center;
-
-    border: none;
-    border-radius: 5px;
-    border: 1px solid black;
-}
-
-.box-1{
-
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-.box-2{
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-.box-2 select{
-    text-align: center;
-}
-
-.box-3{
-
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-.box-4{
-
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-.box-5{
-
-    width: 100%;
-    display: flex;
-
-    padding: 10px;
-}
-.cont-box6{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-.box-6 {
+.Content_Menu_Lancamento {
     width: 90%;
-    padding: 20px;
-    border: 2px dashed #ccc; /* Borda pontilhada para indicar área de drop */
+    max-width: 800px;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.Menu_L_Header {
     text-align: center;
-    cursor: pointer;
-    transition: border-color 0.3s, background-color 0.3s; /* Transição suave para estilos */
-
+    padding: 10px;
+    background-color: #181818;
+    color: #fff;
 }
 
-.box-6.drag-over {
-    border-color: #007bff; /* Muda a cor da borda quando o arquivo é arrastado */
-    background-color: #f0f8ff; /* Fundo leve para indicar área ativa */
-}
-
-
-.container-component-input{
-    width: 100px;
-
-}
-
-
-/*Component*/
-
-
-.input-pattern-form{
+.Menu_L_Body {
+    padding: 10px 20px;
     display: flex;
-}
-.input-pattern-form input{
-    border: none;
-    
-    border: 1px solid black;
-    display: flex;
-    height: 25px;
-    padding: 5px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top-right-radius:5px;
-    border-bottom-right-radius: 5px;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.box-deco{
-    padding: 5px;
-    height: 25px;
+.box-1, .box-2, .box-extra, .box-3, .box-4, .box-5, .cont-box6 {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: none;
-    border-bottom-right-radius: none;
-    background-color: #ccc;
-    border: 1px solid black;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.box-1 {
+    margin-bottom: 10px;
+}
+
+.box-2 {
     color: black;
 }
 
-.cont-text-area{
-    width: 100%;
+.box-4 {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
-.cont-text-area textarea{
-    width: 90%;
-    height: 150px;
+.box-5 {
+    margin-top: 20px;
+}
+
+.box-extra {
+    margin-top: 10px;
+}
+
+.box-extra-content p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.cont-box6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.Container_Menu_Lancamento .input-pattern-form,
+.Container_Menu_Lancamento .box-extra-content,
+.Container_Menu_Lancamento .select-motivo,
+.Container_Menu_Lancamento .cont-text-area {
+    flex: 1 1 calc(50% - 10px);
+}
+
+.Container_Menu_Lancamento .input-field,
+.Container_Menu_Lancamento input[type="text"],
+.Container_Menu_Lancamento input[type="date"],
+.Container_Menu_Lancamento textarea {
+    width: 100%;
     padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.box-button-end{
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}   
+.Container_Menu_Lancamento textarea {
+    min-height: 100px;
+    resize: vertical;
+}
 
-.button-end-s{
-    width: 90%;
+.Container_Menu_Lancamento select {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+
+/* Estilo específico para os inputs e selects do cartão */
+.input-card, .select-card {
+    border: 2px solid #007bff;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+    background-color: #f0f8ff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-card:focus, .select-card:focus {
+    border-color: #0056b3;
+    box-shadow: 0 2px 6px rgba(0, 86, 179, 0.3);
+}
+
+.box-3 {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.button-end-s button{
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    width: 120px;
+.box-3 input {
+    width: 300px;
+}
 
+.box-6 {
+    padding: 20px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    transition: background-color 0.3s ease;
+}
+
+.box-6:hover {
+    background-color: #e0e0e0;
+}
+
+.box-button-end {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.button-end-s button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #181818;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-end-s button:hover {
+    background-color: #383838;
+}
+
+.suggestions-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.box-deco i {
+    font-size: 1.2em;
+    color: #181818;
+}
+
+.container-component-input {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    .input-pattern-form, .box-extra-content, .select-motivo, .cont-text-area {
+        flex: 1 1 100%;
+    }
+
+    .Content_Menu_Lancamento {
+        width: 100%;
+        margin: 0;
+    }
 }

@@ -73,8 +73,9 @@
     width: 80%;
     height: 25px;
     border: none!important;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px!important;
+    border-bottom-right-radius: 5px!important;
+    
 
     padding: 3px;
 

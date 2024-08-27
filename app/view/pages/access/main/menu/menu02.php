@@ -1,10 +1,11 @@
-<div class="Container_Menu_Lançamento">
+<div class="Container_Menu_Lancamento">
     <div class="Content_Menu_Lancamento">
         <div class="Menu_L_Header">
             <div>
-                <h1>Criar cartão</h1>
+                <h2>CARTÃO</h2>
             </div>
         </div>
+
 
         <div class="Menu_L_Body">
             <form id="cardForm" class="">
@@ -16,7 +17,9 @@
                             <i class="bi bi-person"></i>
                         </div>
                         <div class="container-component-input">
-                            <input type="text" name="cliente_nome" id="clienteInput" class="input-field input-name" placeholder="Pesquisar cliente" autocomplete="off">
+                            <input type="text" name="cliente_nome" id="clienteInput" class="input-field input-name " placeholder="Pesquisar cliente" autocomplete="off">
+
+
                             <input type="hidden" name="id_cliente" id="clienteIdInput"> <!-- Campo oculto para o ID do cliente -->
                             <div id="suggestions" class="suggestions-container w-100" style="display: none;"></div>
                         </div>
@@ -109,13 +112,10 @@
 
                 <div class="cont-box6">
                     <div class="box-6" id="dropZone">
-                        <div class="loader"></div>
                         <input type="file" name="imagens[]" id="imageInput" multiple style="display: none;"> <!-- Esconde o input de arquivo padrão -->
                         <p>Arraste os arquivos aqui ou clique para selecionar</p>
                     </div>
                 </div>
-
-
 
 
 
@@ -125,11 +125,6 @@
                         <button type="button" id="">Limpar Cartão</button>
                     </div>
                 </div>
-
-
-
-
-
 
 
             </form>
