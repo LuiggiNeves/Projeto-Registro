@@ -20,19 +20,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Content-Type': 'application/json'
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success) {
-                alert('Sessão expirada. Por favor, faça login novamente.');
-                localStorage.removeItem('authToken');
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    alert('Sessão expirada. Por favor, faça login novamente.');
+                    localStorage.removeItem('authToken');
+                    window.location.href = HOST_APP + '/login';
+                }
+            })
+            .catch((error) => {
+                console.error('Erro na validação do token:', error);
+                alert('Erro ao validar o token. Por favor, tente novamente.');
                 window.location.href = HOST_APP + '/login';
-            }
-        })
-        .catch((error) => {
-            console.error('Erro na validação do token:', error);
-            alert('Erro ao validar o token. Por favor, tente novamente.');
-            window.location.href = HOST_APP + '/login';
-        });
+            });
     }
 
     // Carrega as opções dos selects e configura sugestões de clientes
@@ -105,12 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('cardForm');
             const formData = new FormData(form);
 
-            if (!form.querySelector('input[name="action"]')) {
-                const actionInput = document.createElement('input');
-                actionInput.type = 'hidden';
-                actionInput.name = 'action';
-                actionInput.value = 'create';
-                form.appendChild(actionInput);
+            // Adiciona o campo 'action' ao formData
+            if (!formData.has('action')) {
+                formData.append('action', 'create');
             }
 
             const operadorId = localStorage.getItem('userId');
@@ -127,22 +124,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            // Log de depuração para verificar os dados do formulário
+            console.log('Dados do formulário antes do envio:', [...formData.entries()]);
+
             fetch('app/controller/card/cardGetCreate.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    alert(result.message);
-                    form.reset();
-                } else {
-                    alert('Erro: ' + result.message);
-                }
-            })
-            .catch(error => console.error('Erro ao criar cartão:', error));
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Resposta do servidor:', result);
+                    if (result.success) {
+                        alert(result.message);
+                        form.reset();
+                    } else {
+                        alert('Erro: ' + result.message);
+                    }
+                })
+                .catch(error => console.error('Erro ao criar cartão:', error));
         });
     }
+
+
 
     // Configura o arrastar e soltar para o input de arquivo
     function setupFileDragAndDrop() {
