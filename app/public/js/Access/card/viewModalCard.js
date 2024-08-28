@@ -1,3 +1,4 @@
+// viewModalCard.js
 window.viewCard = function(cardId) {
     fetch(`app/model/card/cardGet.php?id=${cardId}`)
         .then(response => response.json())
@@ -46,6 +47,8 @@ window.viewCard = function(cardId) {
         })
         .catch(error => console.error('Erro ao buscar detalhes do cartão:', error));
 };
+
+
 
 // Função para fechar o modal
 window.closeModal = function() {

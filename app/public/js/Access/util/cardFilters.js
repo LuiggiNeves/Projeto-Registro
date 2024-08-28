@@ -1,11 +1,8 @@
+// cardFilters.js
 document.addEventListener('DOMContentLoaded', function () {
-    // Inicialização de funções ao carregar a página
-    checkTokenValidity();
-    loadOptions();
-    setupFilterListeners();
+    configuraListenersFiltros();
     buscarDadosAjax();
 
-    // Função para buscar dados dos cartões via AJAX
     function buscarDadosAjax() {
         const operadorId = localStorage.getItem('userId');
         const startDate = document.getElementById('startDate').value;
@@ -78,66 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => console.error('Erro na requisição:', error));
     }
 
-    // Função para configurar listeners para os filtros
-    function setupFilterListeners() {
+    function configuraListenersFiltros() {
         document.getElementById('startDate').addEventListener('change', buscarDadosAjax);
         document.getElementById('endDate').addEventListener('change', buscarDadosAjax);
         document.getElementById('statusFilter').addEventListener('change', buscarDadosAjax);
         document.getElementById('clientSearch').addEventListener('input', buscarDadosAjax);
     }
-
-    // Função para verificar a validade do token
-    function checkTokenValidity() {
-        const token = localStorage.getItem('authToken');
-        if (!token) {
-            window.location.href = HOST_APP + '/login';
-            return false;
-        }
-
-        fetch('app/controller/httpAccess/validateToken.php', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success) {
-                alert('Sessão expirada. Por favor, faça login novamente.');
-                localStorage.removeItem('authToken');
-                window.location.href = HOST_APP + '/login';
-            }
-        })
-        .catch((error) => {
-            console.error('Erro na validação do token:', error);
-            alert('Erro ao validar o token. Por favor, tente novamente.');
-            window.location.href = HOST_APP + '/login';
-        });
-    }
-
-    // Função para carregar as opções dos selects
-    function loadOptions() {
-        fetch('app/model/card/getOptions.php')
-            .then(response => response.json())
-            .then(data => {
-                populateSelect('software', data.software, 'id', 'nome');
-                populateSelect('situacao', data.situacao, 'id', 'nome_situacao');
-                populateSelect('id_motivo', data.id_motivo, 'id', 'nome_motivo');
-                setupClientSuggestions(data.clientes);
-            })
-            .catch(error => console.error('Erro ao carregar opções:', error));
-    }
-
-    function populateSelect(selectName, options, valueKey, textKey) {
-        const select = document.querySelector(`select[name="${selectName}"]`);
-        select.innerHTML = ''; // Limpa o select antes de popular
-        options.forEach(option => {
-            const newOption = document.createElement('option');
-            newOption.value = option[valueKey];
-            newOption.textContent = option[textKey];
-            select.appendChild(newOption);
-        });
-    }
-
 });

@@ -74,7 +74,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .Container_Menu_Lancamento .input-pattern-form,
@@ -156,6 +156,13 @@
     gap: 10px;
 }
 
+.button-end-s{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
 .button-end-s button {
     padding: 10px 20px;
     border: none;
@@ -163,6 +170,7 @@
     background-color: #181818;
     color: #fff;
     cursor: pointer;
+    margin-right: 10px;
     transition: background-color 0.3s ease;
 }
 
@@ -187,6 +195,26 @@
 
 .container-component-input {
     flex: 1;
+}
+
+.container-name-file{
+    border: 1px solid rgb(146, 146, 146);
+    border-radius: 5px;
+    height: 30px;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: 5px;
+}
+
+.container-name-file i{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 @media (max-width: 600px) {

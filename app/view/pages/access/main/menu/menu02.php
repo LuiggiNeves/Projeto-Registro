@@ -116,15 +116,21 @@
                         <p>Arraste os arquivos aqui ou clique para selecionar</p>
                     </div>
                 </div>
+                <div class="container-name-file">
 
+                </div>
 
 
                 <div class="box-button-end">
                     <div class="button-end-s">
-                        <button type="button" id="submitButton">Criar Cartão</button>
-                        <button type="button" id="">Limpar Cartão</button>
+                        <button type="button" onclick="createCard()">Criar Cartão</button>
+                        <button type="button" onclick="cleanCard()">Limpar Cartão</button>
+                        <button type="button" onclick="cancelCard()" style="display: none;">Cancelar</button>
+                        <button type="button" onclick="editCard()" style="display: none;">Editar</button>
                     </div>
                 </div>
+
+
 
 
             </form>

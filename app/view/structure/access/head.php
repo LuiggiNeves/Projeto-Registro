@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="app/public/js/Access/app.js"></script>
-
     <script src="app/config/config.js"></script>
+
+
+
     <link rel="stylesheet" href="app/public/css/access/import.css">
 
     <link rel="shortcut icon" href="app/public/assets/img/Logo.png" type="image/x-icon">
