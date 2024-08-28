@@ -4,34 +4,50 @@ window.editCard = function(cardId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Popula o formulário com os detalhes do cartão
-                document.getElementById('clienteInput').value = data.card.nome_cliente;
-                document.getElementById('clienteIdInput').value = data.card.id_cliente;
-                document.querySelector('input[name="cnpj"]').value = data.card.cnpj;
-                document.querySelector('select[name="situacao"]').value = data.card.situacao;
-                document.querySelector('select[name="id_motivo"]').value = data.card.id_motivo;
-                document.querySelector('select[name="software"]').value = data.card.software;
-                document.querySelector('input[name="assunto"]').value = data.card.assunto;
-                document.querySelector('input[name="comunicador_01"]').value = data.card.comunicador_01;
-                document.querySelector('input[name="comunicador_02"]').value = data.card.comunicador_02;
-                document.querySelector('input[name="data_inicio"]').value = data.card.data_inicio;
-                document.querySelector('input[name="data_prazo"]').value = data.card.data_prazo;
-                document.querySelector('input[name="data_fim"]').value = data.card.data_fim;
-                document.querySelector('textarea[name="descricao"]').value = data.card.descricao;
+                const form = document.getElementById('cardForm');
 
-                // Alterna a exibição dos botões para modo de edição
-                document.querySelector('button[onclick="createCard()"]').style.display = 'none';
-                document.querySelector('button[onclick="cleanCard()"]').style.display = 'none';
-                document.querySelector('button[onclick="editCard()"]').style.display = 'block';
-                document.querySelector('button[onclick="cancelCard()"]').style.display = 'block';
+                if (form) {
+                    // Popula o formulário com os detalhes do cartão
+                    form.elements['cliente_nome'].value = data.card.nome_cliente || '';
+                    form.elements['id_cliente'].value = data.card.id_cliente || '';
+                    form.elements['cnpj'].value = data.card.cnpj || '';
+                    form.elements['situacao'].value = data.card.situacao || '';
+                    form.elements['id_motivo'].value = data.card.id_motivo || '';
+                    form.elements['software'].value = data.card.software || '';
+                    form.elements['assunto'].value = data.card.assunto || '';
+                    form.elements['comunicador_01'].value = data.card.comunicador_01 || '';
+                    form.elements['comunicador_02'].value = data.card.comunicador_02 || '';
+                    form.elements['data_inicio'].value = data.card.data_inicio || '';
+                    form.elements['data_prazo'].value = data.card.data_prazo || '';
+                    form.elements['data_fim'].value = data.card.data_fim || '';
+                    form.elements['descricao'].value = data.card.descricao || '';
 
-                // Altera a cor do Menu_L_Header para amarelo
-                const header = document.querySelector('.Menu_L_Header');
-                header.style.backgroundColor = 'yellow';
+                    // Define o ID do cartão em um campo oculto para edição
+                    if (!form.elements['id_card']) {
+                        const inputIdCard = document.createElement('input');
+                        inputIdCard.type = 'hidden';
+                        inputIdCard.name = 'id_card';
+                        inputIdCard.value = data.card.id;
+                        form.appendChild(inputIdCard);
+                    } else {
+                        form.elements['id_card'].value = data.card.id;
+                    }
 
-                // Atualiza o título do menu com o ID do cartão e o nome do cliente
-                const titulo = header.querySelector('h2');
-                titulo.textContent = `Editar: ${data.card.id} + ${data.card.nome_cliente}`;
+                    // Alterna a exibição dos botões para modo de edição
+                    toggleButtonVisibility('none', 'none', 'block', 'block');
+
+                    // Altera a cor do Menu_L_Header para amarelo e atualiza o título
+                    const header = document.querySelector('.Menu_L_Header');
+                    if (header) {
+                        header.style.backgroundColor = 'yellow';
+                        const titulo = header.querySelector('h2');
+                        if (titulo) {
+                            titulo.textContent = `Editar: ${data.card.id} + ${data.card.nome_cliente}`;
+                        }
+                    }
+                } else {
+                    console.error('Formulário não encontrado!');
+                }
             } else {
                 alert('Erro ao buscar detalhes do cartão para edição.');
             }
@@ -39,23 +55,65 @@ window.editCard = function(cardId) {
         .catch(error => console.error('Erro ao buscar detalhes do cartão:', error));
 };
 
+// Função para enviar os dados editados ao backend
+window.submitEditCard = function() {
+    const form = document.getElementById('cardForm');
+    const formData = new FormData(form);
+    
+    // Adiciona a ação de edição
+    formData.append('action', 'edit');
+
+    fetch('app/controller/card/card-edit.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            alert(result.message);
+            cancelCard(); // Restaura o formulário e o estado original após edição
+        } else {
+            alert('Erro ao editar o cartão: ' + result.message);
+        }
+    })
+    .catch(error => console.error('Erro ao enviar dados de edição:', error));
+};
+
+// Função para alternar a visibilidade dos botões
+function toggleButtonVisibility(createDisplay, cleanDisplay, editDisplay, cancelDisplay) {
+    const btnCreate = document.querySelector('button[onclick="createCard()"]');
+    const btnClean = document.querySelector('button[onclick="cleanCard()"]');
+    const btnEdit = document.querySelector('button[onclick="submitEditCard()"]');
+    const btnCancel = document.querySelector('button[onclick="cancelCard()"]');
+
+    if (btnCreate) btnCreate.style.display = createDisplay;
+    if (btnClean) btnClean.style.display = cleanDisplay;
+    if (btnEdit) btnEdit.style.display = editDisplay;
+    if (btnCancel) btnCancel.style.display = cancelDisplay;
+}
+
 // Função para cancelar a edição
 window.cancelCard = function() {
-    // Limpa o formulário
-    document.getElementById('cardForm').reset();
-    document.getElementById('clienteIdInput').value = ''; // Limpa o campo de ID oculto
+    const form = document.getElementById('cardForm');
+    
+    if (form) {
+        // Limpa o formulário
+        form.reset();
+        form.elements['id_cliente'].value = ''; // Limpa o campo de ID oculto
 
-    // Alterna a exibição dos botões de volta para o modo de criação
-    document.querySelector('button[onclick="createCard()"]').style.display = 'block';
-    document.querySelector('button[onclick="cleanCard()"]').style.display = 'block';
-    document.querySelector('button[onclick="editCard()"]').style.display = 'none';
-    document.querySelector('button[onclick="cancelCard()"]').style.display = 'none';
+        // Alterna a exibição dos botões de volta para o modo de criação
+        toggleButtonVisibility('block', 'block', 'none', 'none');
 
-    // Restaura a cor original do Menu_L_Header
-    const header = document.querySelector('.Menu_L_Header');
-    header.style.backgroundColor = ''; // Remove a cor de fundo amarela
-
-    // Restaura o título original
-    const titulo = header.querySelector('h2');
-    titulo.textContent = 'CARTÃO';
+        // Restaura a cor original do Menu_L_Header e o título
+        const header = document.querySelector('.Menu_L_Header');
+        if (header) {
+            header.style.backgroundColor = ''; // Remove a cor de fundo amarela
+            const titulo = header.querySelector('h2');
+            if (titulo) {
+                titulo.textContent = 'CARTÃO';
+            }
+        }
+    } else {
+        console.error('Formulário não encontrado!');
+    }
 };
