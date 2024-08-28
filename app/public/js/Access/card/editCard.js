@@ -1,9 +1,9 @@
-// editCard.js
-
 let currentFiles = []; // Lista global de arquivos atuais
 let filesToDelete = []; // Lista de arquivos a serem movidos para a pasta "Deletados"
 
 window.editCard = function(cardId) {
+    resetForm(); // Limpa o formulário antes de editar
+
     fetch(`app/model/card/cardGet.php?id=${cardId}`)
         .then(response => response.json())
         .then(data => {
@@ -87,6 +87,29 @@ window.editCard = function(cardId) {
         .catch(error => console.error('Erro ao buscar detalhes do cartão:', error));
 };
 
+// Função para limpar completamente o formulário e as variáveis globais
+function resetForm() {
+    const form = document.getElementById('cardForm');
+    if (form) {
+        form.reset(); // Limpa todos os campos do formulário
+        form.elements['id_cliente'].value = ''; // Limpa o campo de ID oculto
+
+        // Habilita os campos 'cliente_nome' e 'cnpj' novamente
+        form.elements['cliente_nome'].disabled = false;
+        form.elements['cnpj'].disabled = false;
+    }
+
+    // Limpa a lista de arquivos e as variáveis globais
+    currentFiles = [];
+    filesToDelete = [];
+    updateFileDisplay(); // Atualiza a exibição dos arquivos
+
+    const inputArquivo = document.getElementById('imageInput');
+    if (inputArquivo) {
+        inputArquivo.value = ''; // Limpa o campo de input de arquivos
+    }
+}
+
 // Função para marcar um arquivo para deleção
 function marcarArquivoParaDelecao(index) {
     filesToDelete.push(currentFiles[index]); // Adiciona o arquivo à lista de arquivos a serem movidos para "Deletados"
@@ -166,30 +189,18 @@ function toggleButtonVisibility(createDisplay, cleanDisplay, editDisplay, cancel
 
 // Função para cancelar a edição
 window.cancelCard = function() {
-    const form = document.getElementById('cardForm');
-    
-    if (form) {
-        // Limpa o formulário
-        form.reset();
-        form.elements['id_cliente'].value = ''; // Limpa o campo de ID oculto
+    resetForm(); // Limpa o formulário e restaura o estado original
 
-        // Habilita os campos 'cliente_nome' e 'cnpj' novamente
-        form.elements['cliente_nome'].disabled = false;
-        form.elements['cnpj'].disabled = false;
+    // Alterna a exibição dos botões de volta para o modo de criação
+    toggleButtonVisibility('block', 'block', 'none', 'none');
 
-        // Alterna a exibição dos botões de volta para o modo de criação
-        toggleButtonVisibility('block', 'block', 'none', 'none');
-
-        // Restaura a cor original do Menu_L_Header e o título
-        const header = document.querySelector('.Menu_L_Header');
-        if (header) {
-            header.style.backgroundColor = ''; // Remove a cor de fundo amarela
-            const titulo = header.querySelector('h2');
-            if (titulo) {
-                titulo.textContent = 'CARTÃO';
-            }
+    // Restaura a cor original do Menu_L_Header e o título
+    const header = document.querySelector('.Menu_L_Header');
+    if (header) {
+        header.style.backgroundColor = ''; // Remove a cor de fundo amarela
+        const titulo = header.querySelector('h2');
+        if (titulo) {
+            titulo.textContent = 'CARTÃO';
         }
-    } else {
-        console.error('Formulário não encontrado!');
     }
 };
