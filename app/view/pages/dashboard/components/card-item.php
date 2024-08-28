@@ -19,8 +19,14 @@
         </div>
 
         <div class="Card-item-edit">
-            <button onclick="openModal('editModal')">EDITAR</button>
-            <button onclick="openModal('viewModal')">VER</button>
+
+            <div class="pattern-component-card-item">
+                <i class="bi bi-chat-square-text-fill"></i>
+            </div>
+
+            <div class="pattern-component-card-item" >
+                <i class="bi bi-eye-fill" ></i>
+            </div>
         </div>
 
 
@@ -29,3 +35,10 @@
         </div>
     </div>
 </div>
+
+<!--
+                                    <div class="Card-item-edit">
+                                        <button onclick="editCard(${card.id})">EDITAR</button>
+                                        <button >VER</button>
+                                    </div>
+-->

@@ -1,67 +1,68 @@
 <!-- Modal para Visualização -->
-<div class="card-modal" id="viewModal">
-    <div class="card-modal-content">
-        <span class="card-close" onclick="closeModal('viewModal')">&times;</span>
+<div class="modal fade" id="viewModalUnique" tabindex="-1" aria-labelledby="viewModalLabelUnique" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewModalLabelUnique"></h5>
+        <!-- Botão "X" de fechar -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-info">
+          <div class="infos-inicial">
+            <p><strong>ID:</strong> 1</p>
+            <p>Situação: Finalizado</p>
+          </div>
 
-        <div class="Container-Modal-view">
-            <div class="Container_Header_Modal">
-                <h3>Nosso Lar (Loja 01)</h3>
+          <div class="infos-cliente">
+            <div>
+              <p><strong>Cliente:</strong> </p>
+              <p><strong>Falando com:</strong> </p>
             </div>
-
-            <div class="Container_Body_Modal">
-                <div class="modal-info">
-                    <div class="infos-inicial">
-                        <p><strong>ID:</strong> 1</p>
-                        <p>Situação: Finalizado</p>
-                    </div>
-
-                    <div class="infos-cliente">
-                        <div>
-                            <p><strong>Cliente:</strong> Nosso Lar</p>
-                            <p><strong>Falando com:</strong> Beth</p>
-                        </div>
-                        <div>
-                            <p><strong>CNPJ:</strong> 123445dsds56</p>
-                            <p><strong>Falando com:</strong> Rodrigo</p>
-                        </div>
-                    </div>
-
-                    <div class="infos-assunto">
-                        <p><strong>Assunto:</strong> Tef Duplicando venda</p>
-                    </div>
-
-                    <div class="info-data">
-                        <p><strong>Quando Começou:</strong> 23/02/2023</p>
-                        <p><strong>Prazo:</strong> 02/02/2023</p>
-                        <p><strong>Finalizado:</strong> 04/05/2066</p>
-                    </div>
-
-                    <div class="infos-operador-software">
-                        <p><strong>Operador:</strong> Luiggi Neves</p>
-                        <p><strong>Software:</strong> Gplus Loja</p>
-                    </div>
-
-                    <div class="info-detalhes">
-                        <h6>Descrição Ocorrido</h6>
-                        <p>Aqui é o detalhe</p>
-                    </div>
-
-                    <div class="infos-observacoes">
-                        <h6>Observações</h6>
-                        <p>Aqui é a observação do operador</p>
-                    </div>
-
-                    <div class="container-infos-arquivos">
-                        <div class="modal-info">
-                            <p><strong>Arquivos:</strong> <span id="detailArquivos"></span></p> <!-- Seção para arquivos -->
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <p><strong>CNPJ:</strong> </p>
+              <p><strong>Falando com:</strong> </p>
             </div>
+          </div>
 
-            <div class="Container_Footer_Modal">
-                <button onclick="closeModal('viewModal')">Fechar</button>
+          <div class="infos-assunto">
+            <p><strong>Assunto:</strong> </p>
+          </div>
+
+          <div class="info-data">
+            <p><strong>Quando Começou:</strong> </p>
+            <p><strong>Prazo:</strong> </p>
+            <p><strong>Finalizado:</strong> </p>
+          </div>
+
+          <div class="infos-operador-software">
+            <p><strong>Operador:</strong> </p>
+            <p><strong>Software:</strong> </p>
+          </div>
+
+          <div class="info-detalhes">
+            <h6>Descrição Ocorrido</h6>
+            <p>Aqui é o detalhe</p>
+          </div>
+
+          <div class="infos-observacoes">
+            <h6>Observações</h6>
+            <p>Aqui é a observação do operador</p>
+          </div>
+
+          <div class="container-infos-arquivos">
+            <div class="modal-info">
+              <p><strong>Arquivos:</strong> <span id="detailArquivos"></span></p>
             </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <!-- Botão "Fechar" -->
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
     </div>
+  </div>
 </div>
