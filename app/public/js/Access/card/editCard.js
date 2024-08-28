@@ -1,4 +1,8 @@
 // editCard.js
+
+let currentFiles = []; // Lista global de arquivos atuais
+let filesToDelete = []; // Lista de arquivos a serem movidos para a pasta "Deletados"
+
 window.editCard = function(cardId) {
     fetch(`app/model/card/cardGet.php?id=${cardId}`)
         .then(response => response.json())
@@ -33,6 +37,30 @@ window.editCard = function(cardId) {
                         form.elements['id_card'].value = data.card.id;
                     }
 
+                    // Exibe os arquivos associados
+                    const containerArquivos = document.querySelector('.container-name-file');
+                    containerArquivos.innerHTML = ''; // Limpa a lista de arquivos antes de adicionar os novos
+
+                    // Atualiza a lista de arquivos atuais
+                    currentFiles = data.card.files.slice(); // Clona a lista de arquivos
+
+                    currentFiles.forEach((file, index) => {
+                        const itemArquivo = document.createElement('div');
+                        itemArquivo.classList.add('file-item');
+                        itemArquivo.textContent = file.split('/').pop(); // Exibe apenas o nome do arquivo
+
+                        const botaoRemover = document.createElement('button');
+                        botaoRemover.textContent = 'X';
+                        botaoRemover.classList.add('remove-button');
+                        botaoRemover.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Impede a propagação do clique
+                            marcarArquivoParaDelecao(index);
+                        });
+
+                        itemArquivo.appendChild(botaoRemover);
+                        containerArquivos.appendChild(itemArquivo);
+                    });
+
                     // Alterna a exibição dos botões para modo de edição
                     toggleButtonVisibility('none', 'none', 'block', 'block');
 
@@ -55,6 +83,36 @@ window.editCard = function(cardId) {
         .catch(error => console.error('Erro ao buscar detalhes do cartão:', error));
 };
 
+// Função para marcar um arquivo para deleção
+function marcarArquivoParaDelecao(index) {
+    filesToDelete.push(currentFiles[index]); // Adiciona o arquivo à lista de arquivos a serem movidos para "Deletados"
+    currentFiles.splice(index, 1); // Remove o arquivo da lista de arquivos atuais
+    updateFileDisplay(); // Atualiza a exibição dos arquivos
+}
+
+// Função para atualizar a exibição dos arquivos
+function updateFileDisplay() {
+    const containerArquivos = document.querySelector('.container-name-file');
+    containerArquivos.innerHTML = ''; // Limpa a lista de arquivos antes de adicionar os novos
+
+    currentFiles.forEach((file, index) => {
+        const itemArquivo = document.createElement('div');
+        itemArquivo.classList.add('file-item');
+        itemArquivo.textContent = file.split('/').pop();
+
+        const botaoRemover = document.createElement('button');
+        botaoRemover.textContent = 'X';
+        botaoRemover.classList.add('remove-button');
+        botaoRemover.addEventListener('click', function(e) {
+            e.stopPropagation();
+            marcarArquivoParaDelecao(index);
+        });
+
+        itemArquivo.appendChild(botaoRemover);
+        containerArquivos.appendChild(itemArquivo);
+    });
+}
+
 // Função para enviar os dados editados ao backend
 window.submitEditCard = function() {
     const form = document.getElementById('cardForm');
@@ -62,6 +120,16 @@ window.submitEditCard = function() {
     
     // Adiciona a ação de edição
     formData.append('action', 'edit');
+
+    // Adiciona os arquivos existentes que permanecem ao FormData
+    currentFiles.forEach((file) => {
+        formData.append('existing_files[]', file);
+    });
+
+    // Adiciona os arquivos a serem movidos para "Deletados"
+    filesToDelete.forEach((file) => {
+        formData.append('files_to_delete[]', file);
+    });
 
     fetch('app/controller/card/card-edit.php', {
         method: 'POST',

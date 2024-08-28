@@ -45,6 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $card = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($card) {
+                // Adiciona a lógica para incluir os arquivos associados
+                $files = [];
+                if (!empty($card['dir_img'])) {
+                    $files = explode(';', $card['dir_img']);
+                }
+                
+                $card['files'] = $files; // Inclui a lista de arquivos no array de detalhes do cartão
+
                 echo json_encode(['success' => true, 'card' => $card]);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Cartão não encontrado.']);

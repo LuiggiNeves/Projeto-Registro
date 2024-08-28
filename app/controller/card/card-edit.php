@@ -6,7 +6,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php'; // Ajuste o caminho conf
 require '../../model/card/CardModel.php'; // Inclui o modelo
 
 use App\model\card\CardModel;
-
 use function App\controller\card\verificarOuCriarCliente;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -46,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome_cliente = $_POST['cliente_nome'] ?? ''; // Obtém o nome do cliente para usar na criação do diretório
         }
 
-        // Cria um nome de diretório único usando o nome do cliente e a data atual
-        $directoryName = $nome_cliente . '-' . date('Y-m-d');
+        // Cria um nome de diretório no formato "Card_id-data" usando o ID do cartão e a data atual no formato brasileiro
+        $directoryName = 'Card_' . $id_card . '-' . date('d-m-Y');
         $uploadDirectory = __DIR__ . '/../../../app/uploads/' . $directoryName . '/';
 
         // Verifica se o diretório de upload existe, se não existir, cria-o
@@ -55,24 +54,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($uploadDirectory, 0777, true);
         }
 
-        // Variável para armazenar o caminho do arquivo
-        $dir_files = '';
+        // Captura os arquivos a serem movidos para "Deletados"
+        $filesToDelete = $_POST['files_to_delete'] ?? [];
 
-        // Processo de upload de arquivos
+        // Mover os arquivos para a pasta "Deletados" e atualizar dir_files
+        if (!empty($filesToDelete)) {
+            $deletedDirectory = $uploadDirectory . 'Deletados/';
+
+            if (!is_dir($deletedDirectory)) {
+                mkdir($deletedDirectory, 0777, true);
+            }
+
+            foreach ($filesToDelete as $file) {
+                $filePath = __DIR__ . '/../../../' . $file;
+                $deletedFilePath = $deletedDirectory . basename($file);
+
+                // Log de depuração para verificar os caminhos dos arquivos
+                error_log("Tentando mover o arquivo de: $filePath para: $deletedFilePath");
+
+                if (file_exists($filePath)) {
+                    if (rename($filePath, $deletedFilePath)) {
+                        error_log("Arquivo movido para deletados: $deletedFilePath");
+                    } else {
+                        error_log("Erro ao mover o arquivo para deletados: $filePath");
+                    }
+                } else {
+                    error_log("Arquivo não encontrado para mover: $filePath");
+                }
+            }
+        }
+
+        // Reconstroi o campo dir_img para incluir apenas os arquivos restantes
+        $existingFiles = $_POST['existing_files'] ?? [];
+        $dir_files = implode(';', $existingFiles);
+
+        // Processo de upload de novos arquivos
         if (!empty($_FILES['imagens']['name'][0])) {
             foreach ($_FILES['imagens']['tmp_name'] as $key => $tmp_name) {
                 $fileName = basename($_FILES['imagens']['name'][$key]);
                 $targetFilePath = $uploadDirectory . $fileName;
 
                 if (move_uploaded_file($tmp_name, $targetFilePath)) {
-                    $dir_files .= 'uploads/' . $directoryName . '/' . $fileName . ';';
+                    $dir_files .= (empty($dir_files) ? '' : ';') . 'uploads/' . $directoryName . '/' . $fileName;
                 } else {
                     error_log('Erro ao mover o arquivo: ' . $fileName);
                     echo json_encode(['success' => false, 'message' => 'Erro ao salvar o arquivo: ' . $fileName]);
                     exit;
                 }
             }
-            $dir_files = rtrim($dir_files, ';');
         }
 
         // Captura os dados do formulário para editar o cartão
