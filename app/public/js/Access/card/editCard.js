@@ -26,6 +26,10 @@ window.editCard = function(cardId) {
                     form.elements['data_fim'].value = data.card.data_fim || '';
                     form.elements['descricao'].value = data.card.descricao || '';
 
+                    // Desabilita os campos 'cliente_nome' e 'cnpj'
+                    form.elements['cliente_nome'].disabled = true;
+                    form.elements['cnpj'].disabled = true;
+
                     // Define o ID do cartão em um campo oculto para edição
                     if (!form.elements['id_card']) {
                         const inputIdCard = document.createElement('input');
@@ -168,6 +172,10 @@ window.cancelCard = function() {
         // Limpa o formulário
         form.reset();
         form.elements['id_cliente'].value = ''; // Limpa o campo de ID oculto
+
+        // Habilita os campos 'cliente_nome' e 'cnpj' novamente
+        form.elements['cliente_nome'].disabled = false;
+        form.elements['cnpj'].disabled = false;
 
         // Alterna a exibição dos botões de volta para o modo de criação
         toggleButtonVisibility('block', 'block', 'none', 'none');

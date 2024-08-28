@@ -53,5 +53,24 @@ class UserModel
             return false;
         }
     }
+
+    // Novo método para buscar o nome do usuário pelo ID
+    public function getUserNameById($userId)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT nome FROM operador WHERE id = :userId");
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Retorna o nome do usuário se encontrado
+            return $user ? $user['nome'] : false;
+        } catch (PDOException $e) {
+            // Log ou tratamento de erro
+            error_log("Erro ao buscar nome do usuário: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 ?>

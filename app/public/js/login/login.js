@@ -31,8 +31,14 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
                 localStorage.setItem('userId', data.userId);
             }
 
+            // Armazena o nome do operador no localStorage
+            if (data.nomeOperador) {
+                window.alert(data.nomeOperador);
+                localStorage.setItem('nomeOperador', data.nomeOperador);
+            }
+
             // Redireciona para a página do dashboard ou outra página após login bem-sucedido
-            window.location.href = HOST_APP+'/admin';
+            window.location.href = HOST_APP + '/admin';
         } else {
             alert('Login falhou: ' + data.message);
         }

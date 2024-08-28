@@ -23,11 +23,15 @@ $userModel = new UserModel();
 $userId = $userModel->validateUser($name, $password); // Supondo que a função validateUser retorne o userId
 
 if ($userId) {
+    // Buscar o nome do operador após a validação bem-sucedida
+    $nomeOperador = $userModel->getUserNameById($userId); // Adicione esta linha para obter o nome do usuário
+
     // Se o login for bem-sucedido
     $response = [
         'success' => true,
         'message' => 'Login bem-sucedido!',
-        'userId' => $userId // Adiciona o userId à resposta
+        'userId' => $userId, // Adiciona o userId à resposta
+        'nomeOperador' => $nomeOperador // Adiciona o nome do operador à resposta
     ];
 
     // Gera um token JWT usando o nome de usuário e ID do usuário
