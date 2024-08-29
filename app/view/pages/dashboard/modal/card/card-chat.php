@@ -16,14 +16,15 @@
                     <label for="commentText" class="form-label">Adicionar Comentário</label>
                     <textarea class="form-control" id="commentText" rows="3"></textarea>
                 </div>
+                <span id="fileSelectedText" class="ml-2"></span> <!-- Indicador de arquivo selecionado -->
             </div>
             <div class="modal-footer">
+                <input type="file" id="commentFile" style="display: none;" multiple>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-info" id="uploadButton" onclick="document.getElementById('commentFile').click();">Adicionar Arquivo</button>
+
                 <button type="button" class="btn btn-primary" id="saveCommentButton">Comentar</button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Inclui o arquivo JavaScript -->
-<script src="path/to/comments.js"></script>

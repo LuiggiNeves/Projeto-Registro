@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         try {
             $commentModel = new CommentModel();
             $comments = $commentModel->getCommentsByCardId($id_card);
+
             echo json_encode(['success' => true, 'comments' => $comments]);
         } catch (\Exception $e) {
             error_log('Erro ao buscar comentários: ' . $e->getMessage());

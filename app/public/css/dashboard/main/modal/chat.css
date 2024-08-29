@@ -1,7 +1,5 @@
-/* Estilo para o conteúdo de cada item do chat */
-
-#timelineContainer{
-    padding: 15px!important;
+#timelineContainer {
+    padding: 15px !important;
 }
 
 .chat-item-content p {
@@ -9,58 +7,54 @@
     padding: 0;
 }
 
-/* Estilo para o contêiner de cada item do chat */
 .container-chat-item-item {
     width: 100%;
-    height: auto; /* Ajusta a altura com base no conteúdo */
+    height: auto;
     border: 1px solid rgba(99, 98, 98, 0.308);
-    border-radius: 8px; /* Arredondamento mais suave */
-    padding: 10px; /* Aumenta o padding para mais espaço interno */
-    margin-bottom: 15px; /* Aumenta o espaçamento entre os itens */
-    background-color: #f9f9f9; /* Cor de fundo mais clara e suave */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    transition: transform 0.2s, box-shadow 0.2s; /* Transição suave ao passar o mouse */
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .container-chat-item-item:hover {
-    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Aumenta a sombra ao passar o mouse */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo para o nome do operador */
 .operador-chat {
-    font-size: 13px; /* Tamanho da fonte ligeiramente maior */
-    font-weight: bold; /* Negrito para destaque */
-    color: #2185f0; /* Cor azul para visibilidade e distinção */
-    margin-bottom: 5px; /* Espaçamento abaixo do nome do operador */
-    display: flex; /* Flexbox para alinhamento */
-    align-items: center; /* Centraliza verticalmente */
+    font-size: 13px;
+    font-weight: bold;
+    color: #2185f0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
     margin-top: 20px;
 }
 
 .operador-chat i {
-    margin-right: 5px; /* Espaçamento entre o ícone e o nome */
+    margin-right: 5px;
 }
 
-/* Estilo para o texto do item do chat */
 .text-chat-item {
     overflow-wrap: break-word;
     word-wrap: break-word;
-    white-space: pre-wrap; /* Mantém quebras de linha e espaços */
-    font-size: 14px; /* Aumenta o tamanho da fonte */
-    line-height: 1.6; /* Espaçamento entre linhas */
-    color: #333; /* Cor do texto mais escura para melhor legibilidade */
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
 }
 
-/* Estilo para a data do item do chat */
 .small-date-item-modal {
-    font-size: 11px; /* Um pouco maior para melhor visibilidade */
+    font-size: 11px;
     position: absolute;
-    padding: 2px 6px; /* Ajuste de padding para espaço uniforme */
-    bottom: 5px; /* Posiciona mais próximo da borda inferior */
-    right: 5px; /* Posiciona mais próximo da borda direita */
-    background-color: rgba(0, 0, 0, 0.05); /* Fundo semitransparente para destaque */
-    border-radius: 3px; /* Leve arredondamento para suavidade */
-    color: #666; /* Cor do texto mais suave */
+    padding: 2px 6px;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    color: #666;
 }

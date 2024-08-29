@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Função para verificar se o usuário está logado
     function isUserLoggedIn() {
         return localStorage.getItem('nomeOperador') !== null;
     }
@@ -8,46 +7,56 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('saveCommentButton').dataset.cardId = cardId;
 
         const timelineContainer = document.getElementById('timelineContainer');
-        timelineContainer.innerHTML = ''; // Limpa o container antes de adicionar novos elementos
+        timelineContainer.innerHTML = '';
 
-        // Busca comentários do servidor
         fetch(`app/controller/card/GetCommentsController.php?id_card=${cardId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     data.comments.forEach(comment => {
-                        // Cria o item da linha do tempo
                         const chatItemContent = document.createElement('div');
                         chatItemContent.className = 'chat-item-content';
 
-                        // Elemento para o operador
                         const operadorChat = document.createElement('div');
                         operadorChat.className = 'operador-chat';
                         const operadorElement = document.createElement('i');
-                        operadorElement.textContent = comment.operador_nome; // Adiciona o nome do operador
+                        operadorElement.textContent = comment.operador_nome;
                         operadorChat.appendChild(operadorElement);
 
                         const containerChatItem = document.createElement('div');
                         containerChatItem.className = 'container-chat-item-item';
 
-                        // Elemento para o texto do comentário
                         const textChatItem = document.createElement('div');
                         textChatItem.className = 'text-chat-item';
                         const pElement = document.createElement('p');
-                        pElement.innerHTML = comment.valor_comentario.replace(/\n/g, '<br>'); // Substitui \n por <br> para quebras de linha
+                        pElement.innerHTML = comment.valor_comentario.replace(/\n/g, '<br>');
                         textChatItem.appendChild(pElement);
 
-                        // Elemento para a data do comentário
+                        if (comment.arquivos && comment.arquivos.length > 0) {
+                            comment.arquivos.forEach(filePath => {
+                                const fileLink = document.createElement('a');
+                                fileLink.href = filePath;
+                                fileLink.textContent = 'Baixar Arquivo';
+                                fileLink.target = '_blank';
+                                fileLink.style.display = 'block';
+                                fileLink.style.marginTop = '10px';
+                                
+                                // Adiciona o atributo download para forçar o download
+                                fileLink.setAttribute('download', '');
+
+                                containerChatItem.appendChild(fileLink);
+                            });
+                        }
+
                         const dateItemModal = document.createElement('div');
                         dateItemModal.className = 'small-date-item-modal';
                         const iElement = document.createElement('i');
-                        iElement.textContent = new Date(comment.data).toLocaleDateString(); // Adiciona a data formatada
+                        iElement.textContent = new Date(comment.data).toLocaleDateString();
                         dateItemModal.appendChild(iElement);
 
-                        // Monta o item completo e adiciona ao container principal
                         containerChatItem.appendChild(textChatItem);
                         containerChatItem.appendChild(dateItemModal);
-                        chatItemContent.appendChild(operadorChat); // Adiciona o operador
+                        chatItemContent.appendChild(operadorChat);
                         chatItemContent.appendChild(containerChatItem);
                         timelineContainer.appendChild(chatItemContent);
                     });
@@ -61,30 +70,45 @@ document.addEventListener('DOMContentLoaded', function () {
         commentModal.show();
     };
 
-    // Função para salvar o comentário
+    document.getElementById('commentFile').addEventListener('change', function() {
+        const files = this.files;
+        const fileSelectedText = document.getElementById('fileSelectedText');
+        
+        if (files.length > 0) {
+            let fileNames = [];
+            for (let i = 0; i < files.length; i++) {
+                fileNames.push(files[i].name);
+            }
+            fileSelectedText.textContent = 'Arquivos selecionados: ' + fileNames.join(', ');
+        } else {
+            fileSelectedText.textContent = ''; // Limpa o texto se nenhum arquivo estiver selecionado
+        }
+    });
+
     document.getElementById('saveCommentButton').addEventListener('click', function() {
         if (!isUserLoggedIn()) {
             alert('Você precisa estar logado para adicionar um comentário.');
-            // Redireciona para a página de login
             window.location.href = 'http://192.168.2.18/Projeto-Registro/login';
             return;
         }
 
         const cardId = this.dataset.cardId;
         const commentText = document.getElementById('commentText').value;
-        const operadorId = localStorage.getItem('userId'); // Obtém o ID do operador do localStorage
+        const files = document.getElementById('commentFile').files;
+        const formData = new FormData();
 
-        if (commentText.trim() === '') {
-            alert('Por favor, insira um comentário.');
-            return;
+        formData.append('id_card', cardId);
+        formData.append('comment', commentText);
+        formData.append('situacao', 1);
+        formData.append('id_operador', localStorage.getItem('userId'));
+
+        for (let i = 0; i < files.length; i++) {
+            formData.append('files[]', files[i]);
         }
 
         fetch('app/controller/card/AddCommentController.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id_card: cardId, comment: commentText, situacao: 1, id_operador: operadorId })
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
@@ -92,38 +116,52 @@ document.addEventListener('DOMContentLoaded', function () {
                 const chatItemContent = document.createElement('div');
                 chatItemContent.className = 'chat-item-content';
 
-                // Elemento para o operador
                 const operadorChat = document.createElement('div');
                 operadorChat.className = 'operador-chat';
                 const operadorElement = document.createElement('i');
-                operadorElement.textContent = localStorage.getItem('nomeOperador'); // Utiliza o nome do operador armazenado
+                operadorElement.textContent = localStorage.getItem('nomeOperador');
                 operadorChat.appendChild(operadorElement);
 
                 const containerChatItem = document.createElement('div');
                 containerChatItem.className = 'container-chat-item-item';
 
-                // Elemento para o texto do novo comentário
                 const textChatItem = document.createElement('div');
                 textChatItem.className = 'text-chat-item';
                 const pElement = document.createElement('p');
-                pElement.innerHTML = commentText.replace(/\n/g, '<br>'); // Substitui \n por <br> para quebras de linha
+                pElement.innerHTML = commentText.replace(/\n/g, '<br>');
                 textChatItem.appendChild(pElement);
 
-                // Elemento para a data do novo comentário
+                if (data.filePaths && data.filePaths.length > 0) {
+                    data.filePaths.forEach(filePath => {
+                        const fileLink = document.createElement('a');
+                        fileLink.href = filePath;
+                        fileLink.textContent = 'Baixar Arquivo';
+                        fileLink.target = '_blank';
+                        fileLink.style.display = 'block';
+                        fileLink.style.marginTop = '10px';
+                        
+                        // Adiciona o atributo download para forçar o download
+                        fileLink.setAttribute('download', '');
+
+                        containerChatItem.appendChild(fileLink);
+                    });
+                }
+
                 const dateItemModal = document.createElement('div');
                 dateItemModal.className = 'small-date-item-modal';
                 const iElement = document.createElement('i');
-                iElement.textContent = 'Agora'; // Usa "Agora" para o novo comentário
+                iElement.textContent = 'Agora';
                 dateItemModal.appendChild(iElement);
 
-                // Monta o item completo e adiciona ao container principal
                 containerChatItem.appendChild(textChatItem);
                 containerChatItem.appendChild(dateItemModal);
-                chatItemContent.appendChild(operadorChat); // Adiciona o operador
+                chatItemContent.appendChild(operadorChat);
                 chatItemContent.appendChild(containerChatItem);
                 timelineContainer.appendChild(chatItemContent);
 
-                document.getElementById('commentText').value = ''; // Limpa o campo de comentário
+                document.getElementById('commentText').value = '';
+                document.getElementById('commentFile').value = '';
+                document.getElementById('fileSelectedText').textContent = ''; // Limpa o indicador de arquivos selecionados
             } else {
                 console.error('Erro ao adicionar comentário:', data.message);
             }
