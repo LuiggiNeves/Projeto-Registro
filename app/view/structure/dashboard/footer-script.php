@@ -13,4 +13,6 @@
 <script src="app/public/js/dashboard/components/card/card.js"></script>
 <script src="app/public/js/dashboard/app.js"></script>
 <script src="app/public/js/dashboard/components/card/card-load.js"></script>
+
+<script src="app/public/js/dashboard/components/card/card-chat.js"></script>
 <script src="app/public/js/dashboard/connection/test-connection.js"></script>

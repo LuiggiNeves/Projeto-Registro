@@ -1,0 +1,38 @@
+
+.chat-item-content p {
+    margin: 0;
+    padding: 0;
+}
+
+.container-chat-item-item {
+    width: 100%;
+    height: 100%;
+    border:  1px solid rgba(99, 98, 98, 0.308);
+    border-radius: 5px;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #eeeeee;
+    
+}
+
+.text-chat-item {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    
+
+}
+
+.small-date-item-modal {
+    font-size: 10px;
+    position: absolute;
+    padding: 5px;
+    bottom: 0;
+
+    right: 0;   
+
+
+}

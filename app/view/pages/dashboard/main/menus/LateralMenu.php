@@ -24,4 +24,5 @@
             <i class="bi bi-gear"></i> <span class="menu-text">Configurações</span>
         </a>
     </div>
+
 </div>

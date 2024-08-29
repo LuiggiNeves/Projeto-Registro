@@ -61,13 +61,13 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
                                     <div class="Card-item-edit">
                                         <div class="pattern-component-card-item">
-                                            <i class="bi bi-chat-square-text-fill"></i>
+                                            <i class="bi bi-chat-square-text-fill" onclick="openCommentModal(${card.id})"></i>
                                         </div>
                                         <div class="pattern-component-card-item" onclick="viewCard(${card.id})">
                                             <i class="bi bi-eye-fill"></i>
                                         </div>
                                     </div>
-                                    <div class="Card-item-operador">
+                                    <div class="Card-item-operador" onclick="openCommentModal(${card.id})">
                                         <i>${card.nome_operador}</i>
                                     </div>
                                 </div>
@@ -95,42 +95,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.viewCard = function (cardId) {
-        // Fecha o modal anterior, se estiver aberto
-        const modalElement = document.getElementById('viewModalUnique');
-        if (modalElement.classList.contains('show')) {
-            // Fechar modal manualmente se estiver aberto
-            var modalBackdrop = document.querySelector('.modal-backdrop');
-            if (modalBackdrop) {
-                modalBackdrop.parentNode.removeChild(modalBackdrop);
-            }
-            modalElement.classList.remove('show');
-            modalElement.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            document.body.style.removeProperty('padding-right');
-        }
-    
+        const modalElement = document.getElementById('viewModalUnique'); // Definição correta do modalElement
+
         const card = cards.find(c => c.id === cardId); // Usa a variável global cards
-    
+
         if (card) {
             // Preencher os dados do modal
-            document.querySelector('#viewModalUnique .modal-title').textContent = `${card.nome_cliente} (Loja 01)`;
-            document.querySelector('#viewModalUnique .infos-inicial p:first-child').textContent = `ID: ${card.id}`;
-            document.querySelector('#viewModalUnique .infos-inicial p:nth-child(2)').textContent = `Situação: ${card.situacao === 1 ? 'Em Espera' : card.situacao === 2 ? 'Em Andamento' : 'Finalizado'}`;
-            document.querySelector('#viewModalUnique .infos-cliente div:first-child p:first-child').textContent = `Cliente: ${card.nome_cliente}`;
-            document.querySelector('#viewModalUnique .infos-cliente div:nth-child(2) p:first-child').textContent = `CNPJ: ${card.cnpj}`;
-            document.querySelector('#viewModalUnique .infos-assunto p').textContent = `Assunto: ${card.assunto}`;
-            document.querySelector('#viewModalUnique .info-data p:first-child').textContent = `Quando Começou: ${card.data_inicio}`;
-            document.querySelector('#viewModalUnique .info-data p:nth-child(2)').textContent = `Prazo: ${card.data_prazo}`;
-            document.querySelector('#viewModalUnique .info-data p:nth-child(3)').textContent = `Finalizado: ${card.data_fim}`;
-            document.querySelector('#viewModalUnique .infos-operador-software p:first-child').textContent = `Operador: ${card.nome_operador}`;
-            document.querySelector('#viewModalUnique .infos-operador-software p:nth-child(2)').textContent = `Software: ${card.nome_software}`;
-            document.querySelector('#viewModalUnique .info-detalhes p').textContent = card.descricao;
-            document.querySelector('#viewModalUnique .infos-observacoes p').textContent = card.observacoes;
-    
+            document.querySelector('#viewModalUnique .modal-title').textContent = `${card.nome_cliente}`;
+            document.getElementById('modalCardId').textContent = card.id;
+            document.getElementById('modalSituacao').textContent = card.situacao === 1 ? 'Em Espera' : card.situacao === 2 ? 'Em Andamento' : 'Finalizado';
+            document.getElementById('modalCliente').textContent = card.nome_cliente;
+            document.getElementById('modalCnpj').textContent = card.cnpj;
+            document.getElementById('modalAssunto').textContent = card.assunto;
+            document.getElementById('modalDataInicio').textContent = card.data_inicio;
+            document.getElementById('modalDataPrazo').textContent = card.data_prazo;
+            document.getElementById('modalDataFim').textContent = card.data_fim;
+            document.getElementById('modalOperador').textContent = card.nome_operador;
+            document.getElementById('modalSoftware').textContent = card.nome_software;
+            document.getElementById('modalDescricao').textContent = card.descricao;
+            document.getElementById('modalObservacoes').textContent = card.observacoes;
+
             // Adiciona os links de download dos arquivos, se disponíveis
-            const arquivosContainer = document.querySelector('#viewModalUnique #detailArquivos');
+            const arquivosContainer = document.getElementById('detailArquivos');
             arquivosContainer.innerHTML = ''; // Limpa o conteúdo anterior
-    
+
             if (card.dir_img) {
                 const arquivos = card.dir_img.split(';');
                 arquivos.forEach(function (arquivo) {
@@ -145,13 +133,14 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 arquivosContainer.textContent = 'Nenhum arquivo disponível.';
             }
-    
+
             // Abre o modal usando o Bootstrap
             var myModal = new bootstrap.Modal(modalElement);
             myModal.show();
         }
     };
-    
+
+
     fetchCardsForAllOperators();
 
     // Atualiza os cartões automaticamente a cada 5 segundos

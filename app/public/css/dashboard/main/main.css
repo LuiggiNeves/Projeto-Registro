@@ -1,3 +1,27 @@
+/* Para personalizar a barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px; /* largura da barra de rolagem vertical */
+    height: 8px; /* altura da barra de rolagem horizontal */
+}
+
+/* Para personalizar o trilho da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* cor de fundo do trilho */
+    border-radius: 10px; /* arredondamento do trilho */
+}
+
+/* Para personalizar o polegar da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background: #444343; /* cor do polegar */
+    border-radius: 10px; /* arredondamento do polegar */
+}
+
+/* Para a cor do polegar ao passar o mouse */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* cor ao passar o mouse */
+}
+
+
 main {
     width: 100%;
     height: 100%;
@@ -5,7 +29,7 @@ main {
 
 .Container_Menu_Center {
     width: 100%;
-    height: 800px;
+    height: 700px;
 
 }
 
@@ -34,7 +58,7 @@ main {
     width: 400px;
     height: 90%;
     
-    overflow-x: auto;
+ 
     padding: 5px;
 
     border-radius:5px;
@@ -45,11 +69,15 @@ main {
 .Menu-Header-pattern{
     width: 100%;
     height: 50px;
+
 }
 
 .Menu-Body-Pattern{
     width: 100%;
     height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 10px;
 }
 
 

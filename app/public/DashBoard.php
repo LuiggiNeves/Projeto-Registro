@@ -83,8 +83,9 @@
 
     <!-- Modals include -->
     <?php include 'app/view/pages/dashboard/modal/relatorios.php' ?>
-    <?php include 'app/view/pages/dashboard/modal/card/card-edit.php' ?>
+    <?php include 'app/view/pages/dashboard/modal/card/card-chat.php' ?>
     <?php include 'app/view/pages/dashboard/modal/card/card-view.php' ?>
+    <?php include 'app/view/pages/dashboard/modal/login-modal.php' ?>
 
     <?php include 'app/view/structure/dashboard/footer-script.php' ?>
     <?php include 'app/view/structure/dashboard/footer.php' ?>
