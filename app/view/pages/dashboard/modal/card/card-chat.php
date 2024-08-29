@@ -13,13 +13,13 @@
                 <div id="timelineContainer" class="timeline-container" style="max-height: 400px; overflow-y: auto; white-space: pre-wrap;">
                 </div>
                 <div class="mt-4">
-                    <label for="commentText" class="form-label">Adicionar Novo Comentário</label>
+                    <label for="commentText" class="form-label">Adicionar Comentário</label>
                     <textarea class="form-control" id="commentText" rows="3"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" id="saveCommentButton">Salvar Comentário</button>
+                <button type="button" class="btn btn-primary" id="saveCommentButton">Comentar</button>
             </div>
         </div>
     </div>
